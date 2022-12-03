@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>GitHub Pages &amp; Hexo | ZYang&#39;s Blog</title>
+
+
+    <meta name="keywords" content="hexo, GitHub Pages">
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="GitHub PagesGitHub Pages 快速入门 - GitHub Docs HexoOne-Command Deployment | Hexo 基本操作1234567891011# 生成&#x2F;public 文件夹，里面是网站hexo g# 把这个网站文件夹推送到服务器hexo d# 删除网站文件夹hexo clean# 本地查看效果hexo s  写文章 &amp; 页面12345# 写新">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub Pages &amp; Hexo">
+<meta property="og:url" content="https://luziyangde.github.io/2022/11/18/GitHub-Pages%20&%20Hexo/index.html">
+<meta property="og:site_name" content="ZYang&#39;s Blog">
+<meta property="og:description" content="GitHub PagesGitHub Pages 快速入门 - GitHub Docs HexoOne-Command Deployment | Hexo 基本操作1234567891011# 生成&#x2F;public 文件夹，里面是网站hexo g# 把这个网站文件夹推送到服务器hexo d# 删除网站文件夹hexo clean# 本地查看效果hexo s  写文章 &amp; 页面12345# 写新">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-18T06:59:56.000Z">
+<meta property="article:modified_time" content="2022-12-03T13:03:06.997Z">
+<meta property="article:author" content="ZYang">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="GitHub Pages">
+<meta name="twitter:card" content="summary_large_image">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">ZYang&#39;s Blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        GitHub Pages &amp; Hexo
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/11/" class="post-meta__date button">2022-11-18 02:59</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub-Pages"><span class="toc-number">1.</span> <span class="toc-text">GitHub Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo"><span class="toc-number">2.</span> <span class="toc-text">Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%96%87%E7%AB%A0-amp-%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.2.</span> <span class="toc-text">写文章 &amp; 页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-%E8%BF%87%E6%BB%A4%E6%8F%92%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text">Hexo 过滤插件</span></a></li></ol></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub-Pages"><span class="toc-number">1.</span> <span class="toc-text">GitHub Pages</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo"><span class="toc-number">2.</span> <span class="toc-text">Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">基本操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%96%87%E7%AB%A0-amp-%E9%A1%B5%E9%9D%A2"><span class="toc-number">2.2.</span> <span class="toc-text">写文章 &amp; 页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-%E8%BF%87%E6%BB%A4%E6%8F%92%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text">Hexo 过滤插件</span></a></li></ol></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            本文最后更新于 &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; 天前，文中部分描述可能已经过时。
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-12-03"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h2 id="GitHub-Pages"><a href="#GitHub-Pages" class="headerlink" title="GitHub Pages"></a>GitHub Pages</h2><p><a target="_blank" rel="noopener" href="https://docs.github.com/cn/pages/quickstart">GitHub Pages 快速入门 - GitHub Docs</a></p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment">One-Command Deployment | Hexo</a></p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 生成/public 文件夹，里面是网站</span></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 把这个网站文件夹推送到服务器</span></span><br><span class="line">hexo d</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除网站文件夹</span></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地查看效果</span></span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<h3 id="写文章-amp-页面"><a href="#写文章-amp-页面" class="headerlink" title="写文章 &amp; 页面"></a>写文章 &amp; 页面</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">写新文章</span></span><br><span class="line">hexo new &quot;article name&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建新页面（ 在<span class="built_in">source</span>/about 里面产生新文件）</span></span><br><span class="line">hexo new page about</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hexo-过滤插件"><a href="#Hexo-过滤插件" class="headerlink" title="Hexo 过滤插件"></a>Hexo 过滤插件</h3><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/asset-folders.html#%E4%BD%BF%E7%94%A8-Markdown-%E5%B5%8C%E5%85%A5%E5%9B%BE%E7%89%87">资源文件夹 | Hexo</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/plugins.html">插件 | Hexo</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/">API | Hexo</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/26b5a0b59cdd">hexo脚本编写指南（一） - 简书</a></p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/api/filter.html">过滤器（Filter） | Hexo</a></p>
+<p><a target="_blank" rel="noopener" href="https://lamirs.vercel.app/hexo-%E6%96%87%E7%AB%A0%E5%86%85%E6%8F%92%E5%85%A5%E9%99%84%E4%BB%B6-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%9C%80%E7%BB%88%E6%96%B9%E6%A1%88/">hexo 文章内插入附件 插入图片终极解决方案 | Lamirs ☆ Blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/xcodebuild/hexo-asset-image">GitHub - xcodebuild&#x2F;hexo-asset-image: Give asset image in hexo a absolutely path automatically</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图片路径修改插件</span></span><br><span class="line"><span class="comment">// [hexo-update-img - npm](https://www.npmjs.com/package/hexo-update-img)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> log = <span class="built_in">require</span>(<span class="string">&#x27;hexo-log&#x27;</span>)(&#123; <span class="string">&#x27;debug&#x27;</span>: <span class="literal">false</span>, <span class="string">&#x27;slient&#x27;</span>: <span class="literal">false</span> &#125;);  </span><br><span class="line">  </span><br><span class="line"><span class="comment">/**  </span></span><br><span class="line"><span class="comment"> * md文件返回 true  </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; data  </span></span><br><span class="line"><span class="comment"> */</span>  </span><br><span class="line"><span class="keyword">function</span> <span class="title function_">ignore</span>(<span class="params">data</span>) &#123;  </span><br><span class="line">    <span class="keyword">var</span> source = data.<span class="property">source</span>;  </span><br><span class="line">    <span class="keyword">var</span> ext = source.<span class="title function_">substring</span>(source.<span class="title function_">lastIndexOf</span>(<span class="string">&#x27;.&#x27;</span>)).<span class="title function_">toLowerCase</span>();  </span><br><span class="line">    <span class="keyword">return</span> [<span class="string">&#x27;md&#x27;</span>,].<span class="title function_">indexOf</span>(ext) &gt; -<span class="number">1</span>;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">function</span> <span class="title function_">action</span>(<span class="params">data</span>) &#123;  </span><br><span class="line">    <span class="keyword">var</span> reverseSource = data.<span class="property">source</span>.<span class="title function_">split</span>(<span class="string">&quot;&quot;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);  </span><br><span class="line">    <span class="keyword">var</span> fileName = reverseSource.<span class="title function_">substring</span>(<span class="number">3</span>, reverseSource.<span class="title function_">indexOf</span>(<span class="string">&quot;/&quot;</span>)).<span class="title function_">split</span>(<span class="string">&quot;&quot;</span>).<span class="title function_">reverse</span>().<span class="title function_">join</span>(<span class="string">&quot;&quot;</span>);  </span><br><span class="line">    log.<span class="title function_">info</span>(<span class="string">`hexo-asset-img: filename: <span class="subst">$&#123;fileName&#125;</span>, title: <span class="subst">$&#123;data.title.trim()&#125;</span>`</span>);  </span><br><span class="line">  </span><br><span class="line">    <span class="comment">// ![example](postname/example.jpg)  --&gt;  &#123;% asset_img example.jpg example %&#125;  </span></span><br><span class="line">    <span class="keyword">var</span> regExp = <span class="title class_">RegExp</span>(<span class="string">&quot;!\\[(.*?)\\]\\(&quot;</span> + <span class="string">&quot;assets&quot;</span> + <span class="string">&#x27;/(.+?)\\)&#x27;</span>, <span class="string">&quot;g&quot;</span>);  </span><br><span class="line">    <span class="comment">// hexo g  </span></span><br><span class="line">    <span class="comment">// log.info(&#x27;before&#x27;, data.content)    data.content = data.content.replace(regExp, &quot;![$1](/_posts/assets/$2)&quot;,&quot;g&quot;);  </span></span><br><span class="line">    <span class="comment">// log.info(&#x27;after&#x27;, data.content)  </span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> data;  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line">hexo.<span class="property">extend</span>.<span class="property">filter</span>.<span class="title function_">register</span>(<span class="string">&#x27;before_post_render&#x27;</span>,<span class="function">(<span class="params">data</span>)=&gt;</span>&#123;  </span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_">ignore</span>(data))&#123;  </span><br><span class="line">        <span class="title function_">action</span>(data)  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>发布插件</p>
+<p><a target="_blank" rel="noopener" href="https://moeci.com/posts/hexo-typora/">Hexo + Typora + 开发Hexo插件 解决图片路径不一致 | yiyun’s Blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903748913872903">npm制作插件、发布及更新（超详细步骤、说明） - 掘金</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="built_in">set</span> registry https://registry.npmjs.org/</span><br><span class="line"></span><br><span class="line"><span class="comment"># npm登录（需要先注册npm账号：https://www.npmjs.com/）</span></span><br><span class="line">npm login</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发布插件</span></span><br><span class="line">npm publish</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>本文作者：</strong>ZYang
+        </p>
+        <p>
+            <strong>
+                本文链接：
+            </strong>
+            <a href="https://luziyangde.github.io/2022/11/18/GitHub-Pages%20&amp;%20Hexo/">https://luziyangde.github.io/2022/11/18/GitHub-Pages%20&amp;%20Hexo/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>更新于 2022-12-03 09:03</p></div> 
+    <div class="post-entry__tags"><a href="/tags/hexo/" class="post-tags__link button"># hexo</a><a href="/tags/GitHub-Pages/" class="post-tags__link button"># GitHub Pages</a></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/11/19/hello-world/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            Hello World
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2022 <a href="/">ZYang&#39;s Blog</a>
+        </p>
+    
+    
+        
+            <p><a href="https://beian.miit.gov.cn/"  target="_blank">陕ICP备2020014327号-1</a></p>
+
+        
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
