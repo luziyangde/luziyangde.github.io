@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>no title | ZYang&#39;s Blog</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="DockerFile大家想想，Nginx，tomcat，mysql 这些镜像都是哪里来的？官方能写，我们不能写吗？  我们要研究自己如何做一个镜像，而且我们写的微服务项目以及springboot打包上云部署，Docker就是 最方便的。 微服务打包成镜像，任何装了Docker的地方，都可以下载使用，极其的方便。  流程：开发应用&#x3D;&gt;DockerFile&#x3D;&gt;打包为镜像">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZYang&#39;s Blog">
+<meta property="og:url" content="https://luziyangde.github.io/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E3%80%90DockerFile%E3%80%91/index.html">
+<meta property="og:site_name" content="ZYang&#39;s Blog">
+<meta property="og:description" content="DockerFile大家想想，Nginx，tomcat，mysql 这些镜像都是哪里来的？官方能写，我们不能写吗？  我们要研究自己如何做一个镜像，而且我们写的微服务项目以及springboot打包上云部署，Docker就是 最方便的。 微服务打包成镜像，任何装了Docker的地方，都可以下载使用，极其的方便。  流程：开发应用&#x3D;&gt;DockerFile&#x3D;&gt;打包为镜像">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210312212545689.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210312212739742.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314173633523.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314173921825.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314174232942.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314174302496.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314174525809.png">
+<meta property="article:published_time" content="2022-12-04T03:08:07.699Z">
+<meta property="article:modified_time" content="2022-12-04T03:08:07.699Z">
+<meta property="article:author" content="ZYang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://image.luziyangde.cn//img/image-20210312212545689.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">ZYang&#39;s Blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        no title
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/12/" class="post-meta__date button">2022-12-04 03:08</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#DockerFile"><span class="toc-number">1.</span> <span class="toc-text">DockerFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFDockerFile"><span class="toc-number">2.</span> <span class="toc-text">什么是DockerFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DockerFile%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">DockerFile构建过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DockerFile%E6%8C%87%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">DockerFile指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">实战测试</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#DockerFile"><span class="toc-number">1.</span> <span class="toc-text">DockerFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFDockerFile"><span class="toc-number">2.</span> <span class="toc-text">什么是DockerFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DockerFile%E6%9E%84%E5%BB%BA%E8%BF%87%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text">DockerFile构建过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DockerFile%E6%8C%87%E4%BB%A4"><span class="toc-number">4.</span> <span class="toc-text">DockerFile指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E6%88%98%E6%B5%8B%E8%AF%95"><span class="toc-number">5.</span> <span class="toc-text">实战测试</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            本文最后更新于 &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; 天前，文中部分描述可能已经过时。
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-12-04"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h3 id="DockerFile"><a href="#DockerFile" class="headerlink" title="DockerFile"></a>DockerFile</h3><p>大家想想，Nginx，tomcat，mysql 这些镜像都是哪里来的？官方能写，我们不能写吗？ </p>
+<p>我们要研究自己如何做一个镜像，而且我们写的微服务项目以及springboot打包上云部署，Docker就是 最方便的。</p>
+<p>微服务打包成镜像，任何装了Docker的地方，都可以下载使用，极其的方便。 </p>
+<p>流程：开发应用&#x3D;&gt;DockerFile&#x3D;&gt;打包为镜像&#x3D;&gt;上传到仓库（私有仓库，公有仓库）&#x3D;&gt; 下载镜像 &#x3D;&gt; 启动运行。 </p>
+<p>还可以方便移植！</p>
+<h3 id="什么是DockerFile"><a href="#什么是DockerFile" class="headerlink" title="什么是DockerFile"></a>什么是DockerFile</h3><p>dockerfile是用来构建Docker镜像的构建文件，是由一系列命令和参数构成的脚本。</p>
+<p>构建步骤： </p>
+<p>1、编写DockerFile文件 </p>
+<p>2、docker build 构建镜像 </p>
+<p>3、docker run</p>
+<p>dockerfile文件我们刚才已经编写过了一次，这里我们继续使用 centos 来看！ </p>
+<p>地址：<a target="_blank" rel="noopener" href="https://hub.docker.com/_/centos">https://hub.docker.com/_/centos</a></p>
+<p><img src="http://image.luziyangde.cn//img/image-20210312212545689.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210312212545689.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210312212545689"></p>
+<img src="http://image.luziyangde.cn//img/image-20210312212739742.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210312212739742.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210312212739742" style="zoom: 67%;" />
+
+
+
+<p><img src="http://image.luziyangde.cn//img/image-20210314173633523.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314173633523.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314173633523"></p>
+<h3 id="DockerFile构建过程"><a href="#DockerFile构建过程" class="headerlink" title="DockerFile构建过程"></a>DockerFile构建过程</h3><p><strong>基础知识：</strong></p>
+<p>1、每条保留字指令都必须为大写字母且后面要跟随至少一个参数 </p>
+<p>2、指令按照从上到下，顺序执行 </p>
+<p>3、# 表示注释 </p>
+<p>4、每条指令都会创建一个新的镜像层，并对镜像进行提交</p>
+<p><strong>流程：</strong> </p>
+<p>1、docker从基础镜像运行一个容器 </p>
+<p>2、执行一条指令并对容器做出修改 </p>
+<p>3、执行类似 docker commit 的操作提交一个新的镜像层 </p>
+<p>4、Docker再基于刚提交的镜像运行一个新容器 </p>
+<p>5、执行dockerfile中的下一条指令直到所有指令都执行完成！ </p>
+<p><strong>说明：</strong></p>
+<p>从应用软件的角度来看，DockerFile，docker镜像与docker容器分别代表软件的三个不同阶段。 </p>
+<ul>
+<li>DockerFile 是软件的原材料 （代码） </li>
+<li>Docker 镜像则是软件的交付品 （.apk） </li>
+<li>Docker 容器则是软件的运行状态 （客户下载安装执行）</li>
+</ul>
+<p>DockerFile 面向开发，Docker镜像成为交付标准，Docker容器则涉及部署与运维，三者缺一不可！</p>
+<img src="http://image.luziyangde.cn//img/image-20210314173921825.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314173921825.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314173921825" style="zoom:67%;" />
+
+
+
+<p>DockerFile：需要定义一个DockerFile，DockerFile定义了进程需要的一切东西。DockerFile涉及的内容 包括执行代码或者是文件、环境变量、依赖包、运行时环境、动态链接库、操作系统的发行版、服务进程和内核进程（当引用进行需要和系统服务和内核进程打交道，这时需要考虑如何设计 namespace的权限控制）等等。 </p>
+<p>Docker镜像：在DockerFile 定义了一个文件之后，Docker build 时会产生一个Docker镜像，当运行 Docker 镜像时，会真正开始提供服务； </p>
+<p>Docker容器：容器是直接提供服务的。</p>
+<h3 id="DockerFile指令"><a href="#DockerFile指令" class="headerlink" title="DockerFile指令"></a>DockerFile指令</h3><p><strong>关键字：</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM # 基础镜像，当前新镜像是基于哪个镜像的</span><br><span class="line">MAINTAINER # 镜像维护者的姓名混合邮箱地址</span><br><span class="line">RUN # 容器构建时需要运行的命令</span><br><span class="line">EXPOSE # 当前容器对外保留出的端口</span><br><span class="line">WORKDIR # 指定在创建容器后，终端默认登录的进来工作目录，一个落脚点</span><br><span class="line">ENV # 用来在构建镜像过程中设置环境变量</span><br><span class="line">ADD # 将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包</span><br><span class="line">COPY # 类似ADD，拷贝文件和目录到镜像中！</span><br><span class="line">VOLUME # 容器数据卷，用于数据保存和持久化工作</span><br><span class="line">CMD # 指定一个容器启动时要运行的命令，dockerFile中可以有多个CMD指令，但只有最后一个生效！</span><br><span class="line">ENTRYPOINT # 指定一个容器启动时要运行的命令！和CMD一样</span><br><span class="line">ONBUILD # 当构建一个被继承的DockerFile时运行命令，父镜像在被子镜像继承后，父镜像的ONBUILD被触发</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://image.luziyangde.cn//img/image-20210314174232942.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314174232942.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174232942"></p>
+<p><img src="http://image.luziyangde.cn//img/image-20210314174302496.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314174302496.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174302496"></p>
+<h3 id="实战测试"><a href="#实战测试" class="headerlink" title="实战测试"></a>实战测试</h3><p>Docker Hub 中99% 的镜像都是通过在base镜像（Scratch）中安装和配置需要的软件构建出来的</p>
+<p><img src="http://image.luziyangde.cn//img/image-20210314174525809.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314174525809.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174525809"></p>
+<blockquote>
+<p>自定义一个 centos </p>
+</blockquote>
+<p>1、编写DockerFile 查看下官方默认的CentOS的情况：</p>
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>本文作者：</strong>ZYang
+        </p>
+        <p>
+            <strong>
+                本文链接：
+            </strong>
+            <a href="https://luziyangde.github.io/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E3%80%90DockerFile%E3%80%91/">https://luziyangde.github.io/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E3%80%90DockerFile%E3%80%91/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>更新于 2022-12-04 03:08</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E4%BA%94%EF%BC%89%E3%80%90%E5%AE%B9%E5%99%A8%E6%95%B0%E6%8D%AE%E5%8D%B7%E3%80%91/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            no title
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%90Docker%E9%95%9C%E5%83%8F%E3%80%91/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            no title
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2022 <a href="/">ZYang&#39;s Blog</a>
+        </p>
+    
+    
+        
+            <p><a href="https://beian.miit.gov.cn/"  target="_blank">陕ICP备2020014327号-1</a></p>
+
+        
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement('script');
+            hm.src = 'https://hm.baidu.com/hm.js?114733087574c33d0c1369375e45ba99';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>

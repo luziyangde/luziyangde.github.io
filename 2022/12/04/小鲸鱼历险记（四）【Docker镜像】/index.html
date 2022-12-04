@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+
+    
+
+    <!-- 渲染优化 -->
+    <meta name="renderer" content="webkit">
+    <meta name="force-rendering" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="HandheldFriendly" content="True" >
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--icon-->
+
+    
+    
+    
+    
+    
+
+
+    <!-- meta -->
+
+
+<title>no title | ZYang&#39;s Blog</title>
+
+
+
+
+
+    <!-- OpenGraph -->
+ 
+    <meta name="description" content="1、镜像是什么镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的所有内容，包括代码、运行时、库、环境变量和配置文件。 2、Docker镜像加载原理 UnionFS （联合文件系统）  UnionFS（联合文件系统）：Union文件系统（UnionFS）是一种分层、轻量级并且高性能的文件系统， 它支持对文件系统的修改作为一次提交来一层层的叠加">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZYang&#39;s Blog">
+<meta property="og:url" content="https://luziyangde.github.io/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%90Docker%E9%95%9C%E5%83%8F%E3%80%91/index.html">
+<meta property="og:site_name" content="ZYang&#39;s Blog">
+<meta property="og:description" content="1、镜像是什么镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的所有内容，包括代码、运行时、库、环境变量和配置文件。 2、Docker镜像加载原理 UnionFS （联合文件系统）  UnionFS（联合文件系统）：Union文件系统（UnionFS）是一种分层、轻量级并且高性能的文件系统， 它支持对文件系统的修改作为一次提交来一层层的叠加">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210311205319988.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210311205518873.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210311205951274.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/20210311210422.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210311210606341.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210311210736070.png">
+<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210311210939441.png">
+<meta property="article:published_time" content="2022-12-04T03:08:07.699Z">
+<meta property="article:modified_time" content="2022-12-04T03:08:07.699Z">
+<meta property="article:author" content="ZYang">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://image.luziyangde.cn//img/image-20210311205319988.png">
+
+
+    
+<link rel="stylesheet" href="/css/style/main.css">
+ 
+
+    
+    
+        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/default.css" media="none" >
+        
+            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/dark.css" media="none">
+        
+    
+
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/style/dark.css">
+
+    
+<script src="/js/darkmode.js"></script>
+
+
+
+     
+
+    <!-- custom head -->
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+        <div id="app" tabindex="-1">
+            <header class="header">
+    <div class="header__left">
+        <a href="/" class="button">
+            <span class="logo__text">ZYang&#39;s Blog</span>
+        </a>
+    </div>
+    <div class="header__right">
+        
+            <div class="navbar__menus">
+                
+                    <a href="/" class="navbar-menu button">首页</a>
+                
+                    <a href="/tags/" class="navbar-menu button">标签</a>
+                
+                    <a href="/archives/" class="navbar-menu button">归档</a>
+                
+            </div>
+        
+        
+        
+    <a href="/search/" id="btn-search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="32"><path d="M192 448c0-141.152 114.848-256 256-256s256 114.848 256 256-114.848 256-256 256-256-114.848-256-256z m710.624 409.376l-206.88-206.88A318.784 318.784 0 0 0 768 448c0-176.736-143.264-320-320-320S128 271.264 128 448s143.264 320 320 320a318.784 318.784 0 0 0 202.496-72.256l206.88 206.88 45.248-45.248z"></path></svg>
+    </a>
+
+
+        
+        
+    <a href="javaScript:void(0);" id="btn-toggle-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </a>
+
+
+        
+            <a class="dropdown-icon button" id="btn-dropdown" tabindex="0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width='24' height='24' fill="none" stroke="currentColor" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round"><path fill="currentColor" d="M3.314,4.8h13.372c0.41,0,0.743-0.333,0.743-0.743c0-0.41-0.333-0.743-0.743-0.743H3.314c-0.41,0-0.743,0.333-0.743,0.743C2.571,4.467,2.904,4.8,3.314,4.8z M16.686,15.2H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,15.2,16.686,15.2z M16.686,9.257H3.314c-0.41,0-0.743,0.333-0.743,0.743s0.333,0.743,0.743,0.743h13.372c0.41,0,0.743-0.333,0.743-0.743S17.096,9.257,16.686,9.257z"></path></svg></a>
+            <div class="dropdown-menus" id="dropdown-menus">
+                
+                    <a href="/" class="dropdown-menu button">首页</a>
+                
+                    <a href="/tags/" class="dropdown-menu button">标签</a>
+                
+                    <a href="/archives/" class="dropdown-menu button">归档</a>
+                
+            </div>
+        
+    </div>
+</header>
+
+
+            <main class="main">
+    
+
+<div class="post-title">
+    <h1 class="post-title__text">
+        no title
+    </h1>
+    <div class="post-title__meta">
+        <a href="/archives/2022/12/" class="post-meta__date button">2022-12-04 03:08</a>
+        
+ 
+        
+    
+    
+
+
+ 
+
+ 
+    </div>
+</div>
+
+
+    <aside class="post-side">
+        <div class="post-side__toc">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%95%9C%E5%83%8F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">1、镜像是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Docker%E9%95%9C%E5%83%8F%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">2、Docker镜像加载原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%86%E5%B1%82%E7%90%86%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">3、分层理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E9%95%9C%E5%83%8FCommit"><span class="toc-number">4.</span> <span class="toc-text">4、镜像Commit</span></a></li></ol>
+        </div>
+    </aside>
+    <a class="btn-toc button" id="btn-toc" tabindex="0">
+        <svg viewBox="0 0 1024 1024" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M128 256h64V192H128zM320 256h576V192H320zM128 544h64v-64H128zM320 544h576v-64H320zM128 832h64v-64H128zM320 832h576v-64H320z" fill="currentColor"></path>
+        </svg>
+    </a>
+    <div class="toc-menus" id="toc-menus">
+        <div class="toc-title">文章目录</div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%95%9C%E5%83%8F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">1、镜像是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Docker%E9%95%9C%E5%83%8F%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">2、Docker镜像加载原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%86%E5%B1%82%E7%90%86%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">3、分层理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E9%95%9C%E5%83%8FCommit"><span class="toc-number">4.</span> <span class="toc-text">4、镜像Commit</span></a></li></ol>
+    </div>
+
+
+<article class="post post__with-toc content-card">
+    <div class="post__header">
+    <div class="post__expire" id="post-expired-notify">
+        <p>
+            本文最后更新于 &lt;span id=&#34;expire-date&#34;&gt;&lt;/span&gt; 天前，文中部分描述可能已经过时。
+        </p>
+    </div>
+    <script>
+        (() => {
+            var update = Date.parse("2022-12-04"),
+                date = new Date(),
+                now = date.getTime(),
+                expire = now - update,
+                expire_days = Math.floor(expire/(24*3600*1000));
+            if (expire_days >= 120) {
+                document.querySelectorAll('#expire-date')[0].innerHTML = expire_days;
+                document.querySelectorAll('#post-expired-notify')[0].style.display = 'block';
+            }
+        })();
+    </script>
+</div>
+    <div class="post__content">
+        <h3 id="1、镜像是什么"><a href="#1、镜像是什么" class="headerlink" title="1、镜像是什么"></a>1、镜像是什么</h3><p>镜像是一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的所有内容，包括代码、运行时、库、环境变量和配置文件。</p>
+<h3 id="2、Docker镜像加载原理"><a href="#2、Docker镜像加载原理" class="headerlink" title="2、Docker镜像加载原理"></a>2、Docker镜像加载原理</h3><blockquote>
+<p>UnionFS （联合文件系统）</p>
+</blockquote>
+<p>UnionFS（联合文件系统）：Union文件系统（UnionFS）是一种分层、轻量级并且高性能的文件系统， 它支持对文件系统的修改作为一次提交来一层层的叠加，同时可以将不同目录挂载到同一个虚拟文件系 统下(unite several directories into a single virtual filesystem)。Union 文件系统是 Docker 镜像的基 础。镜像可以通过分层来进行继承，基于基础镜像（没有父镜像），可以制作各种具体的应用镜像。</p>
+<p>特性：一次同时加载多个文件系统，但从外面看起来，只能看到一个文件系统，联合加载会把各层文件 系统叠加起来，这样最终的文件系统会包含所有底层的文件和目录。</p>
+<blockquote>
+<p>Docker镜像加载原理</p>
+</blockquote>
+<p>Docker的镜像实际上由一层一层的文件系统组成，这种层级的文件系统UnionFS。 </p>
+<p>bootfs(boot file system)主要包含bootloader和kernel, bootloader主要是引导加载kernel, Linux刚启动时会加载bootfs文件系统，在Docker镜像的最底层是bootfs。这一层与我们典型的Linux&#x2F;Unix系统是 一样的，包含boot加载器和内核。当boot加载完成之后整个内核就都在内存中了，此时内存的使用权已由bootfs转交给内核，此时系统也会卸载bootfs。</p>
+<p>rootfs (root file system) ，在bootfs之上。包含的就是典型 Linux 系统中的 &#x2F;dev, &#x2F;proc, &#x2F;bin, &#x2F;etc 等标 准目录和文件。rootfs就是各种不同的操作系统发行版，比如Ubuntu，Centos等等。</p>
+<img src="http://image.luziyangde.cn//img/image-20210311205319988.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210311205319988.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311205319988" style="zoom: 67%;" />
+
+<p>平时我们安装进虚拟机的CentOS都是好几个G，为什么Docker这里才200M？</p>
+<p><img src="http://image.luziyangde.cn//img/image-20210311205518873.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210311205518873.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311205518873"></p>
+<p>对于一个精简的OS，rootfs 可以很小，只需要包含最基本的命令，工具和程序库就可以了，因为底层直接用Host的kernel，自己只需要提供rootfs就可以了。由此可见对于不同的linux发行版, bootfs基本是一 致的, rootfs会有差别, 因此不同的发行版可以公用bootfs。</p>
+<h3 id="3、分层理解"><a href="#3、分层理解" class="headerlink" title="3、分层理解"></a>3、分层理解</h3><blockquote>
+<p>分层的镜像</p>
+</blockquote>
+<p>我们可以去下载一个镜像，注意观察下载的日志输出，可以看到是一层一层的在下载！</p>
+<p><img src="http://image.luziyangde.cn//img/image-20210311205951274.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210311205951274.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311205951274"></p>
+<p>思考：为什么Docker镜像要采用这种分层的结构呢？</p>
+<p> 最大的好处，我觉得莫过于是资源共享了！比如有多个镜像都从相同的Base镜像构建而来，那么宿主机只需在磁盘上保留一份base镜像，同时内存中也只需要加载一份base镜像，这样就可以为所有的容器服 务了，而且镜像的每一层都可以被共享。</p>
+<p>查看镜像分层的方式可以通过 <code>docker image inspect</code> 命令！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@ziyang docker]# docker image inspect redis:latest</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">   		// .....</span><br><span class="line">   		</span><br><span class="line">        &quot;RootFS&quot;: &#123;</span><br><span class="line">            &quot;Type&quot;: &quot;layers&quot;,</span><br><span class="line">            &quot;Layers&quot;: [</span><br><span class="line">                &quot;sha256:cb42413394c4059335228c137fe884ff3ab8946a014014309676c25e3ac86864&quot;,</span><br><span class="line">                &quot;sha256:8e14cb7841faede6e42ab797f915c329c22f3b39026f8338c4c75de26e5d4e82&quot;,</span><br><span class="line">                &quot;sha256:1450b8f0019c829e638ab5c1f3c2674d117517669e41dd2d0409a668e0807e96&quot;,</span><br><span class="line">                &quot;sha256:f927192cc30cb53065dc266f78ff12dc06651d6eb84088e82be2d98ac47d42a0&quot;,</span><br><span class="line">                &quot;sha256:a24a292d018421783c491bc72f6601908cb844b17427bac92f0a22f5fd809665&quot;,</span><br><span class="line">                &quot;sha256:3480f9cdd491225670e9899786128ffe47054b0a5d54c48f6b10623d2f340632&quot;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Metadata&quot;: &#123;</span><br><span class="line">            &quot;LastTagTime&quot;: &quot;0001-01-01T00:00:00Z&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>理解：</strong> </p>
+<p>所有的 Docker 镜像都起始于一个基础镜像层，当进行修改或增加新的内容时，就会在当前镜像层之 上，创建新的镜像层。</p>
+<p>举一个简单的例子，假如基于 Ubuntu Linux 16.04 创建一个新的镜像，这就是新镜像的第一层；如果在该镜像中添加 Python包，就会在基础镜像层之上创建第二个镜像层；如果继续添加一个安全补丁，就会创建第三个镜像层。 </p>
+<p>该镜像当前已经包含 3 个镜像层，如下图所示（这只是一个用于演示的很简单的例子）。</p>
+<img src="http://image.luziyangde.cn//img/20210311210422.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/20210311210422.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" style="zoom: 67%;" />
+
+<p>在添加额外的镜像层的同时，镜像始终保持是当前所有镜像的组合，理解这一点非常重要。下图中举了 一个简单的例子，每个镜像层包含 3 个文件，而镜像包含了来自两个镜像层的 6 个文件。</p>
+<img src="http://image.luziyangde.cn//img/image-20210311210606341.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210311210606341.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311210606341" style="zoom: 67%;" />
+
+<p>上图中的镜像层跟之前图中的略有区别，主要目的是便于展示文件。 </p>
+<p>下图中展示了一个稍微复杂的三层镜像，在外部看来整个镜像只有 6 个文件，这是因为最上层中的文件 7 是文件 5 的一个更新版本。</p>
+<img src="http://image.luziyangde.cn//img/image-20210311210736070.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210311210736070.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311210736070" style="zoom:67%;" />
+
+<p>这种情况下，上层镜像层中的文件覆盖了底层镜像层中的文件。这样就使得文件的更新版本作为一个新镜像层添加到镜像当中。</p>
+<p>Docker 通过存储引擎（新版本采用快照机制）的方式来实现镜像层堆栈，并保证多镜像层对外展示为统 一的文件系统。</p>
+<p>Linux 上可用的存储引擎有 AUFS、Overlay2、Device Mapper、Btrfs 以及 ZFS。顾名思义，每种存储引擎都基于 Linux 中对应的文件系统或者块设备技术，并且每种存储引擎都有其独有的性能特点。</p>
+<p>Docker 在 Windows 上仅支持 windowsfilter 一种存储引擎，该引擎基于 NTFS 文件系统之上实现了分层和 CoW[1]。</p>
+<p>下图展示了与系统显示相同的三层镜像。所有镜像层堆叠并合并，对外提供统一的视图。</p>
+<img src="http://image.luziyangde.cn//img/image-20210311210939441.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210311210939441.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311210939441" style="zoom:67%;" />
+
+
+
+<blockquote>
+<p>特点</p>
+</blockquote>
+<p>Docker镜像都是只读的，当容器启动时，一个新的可写层被加载到镜像的顶部！ </p>
+<p>这一层就是我们通常说的容器层，容器之下的都叫镜像层！</p>
+<h3 id="4、镜像Commit"><a href="#4、镜像Commit" class="headerlink" title="4、镜像Commit"></a>4、镜像Commit</h3><p><code>docker commit</code> 从容器创建一个新的镜像。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker commit 提交容器副本使之成为一个新的镜像！</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">语法</span></span><br><span class="line">docker commit -m=&quot;提交的描述信息&quot; -a=&quot;作者&quot; 容器id 要创建的目标镜像名:[标签名]</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1、从Docker Hub 下载tomcat镜像到本地并运行 -it 交互终端 -p 端口映射</span></span><br><span class="line">docker run -it -p 8080:8080 tomcat</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意：docker启动官方tomcat镜像的容器，发现404是因为使用了加速器，而加速器里的tomcat的webapps下没有root等文件！</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载tomcat官方镜像，就是这个镜像（阿里云里的tomcat的webapps下没有任何文件）</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入tomcat查看<span class="built_in">cd</span>到webapps下发现全部空的，反而有个webapps.dist里有对应文件，<span class="built_in">cp</span> -r 到webapps下！</span></span><br><span class="line">root@8068c07e60b6:/usr/local/tomcat# cp -r webapps.dist/* webapps</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2、删除上一步镜像产生的tomcat容器的文档</span></span><br><span class="line">docker ps # 查看容器id</span><br><span class="line">docker exec -it 容器id /bin/bash</span><br><span class="line">/usr/local/tomcat # cd webapps/</span><br><span class="line">/usr/local/tomcat/webapps # ls -l # 查看是否存在 docs文件夹</span><br><span class="line">/usr/local/tomcat/webapps # curl localhost:8080/docs/ # 可以看到 docs 返回的内容</span><br><span class="line">/usr/local/tomcat/webapps # rm -rf docs # 删除它</span><br><span class="line">/usr/local/tomcat/webapps # curl localhost:8080/docs/ # 再次访问返回404</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3、当前运行的tomcat实例就是一个没有docs的容器，我们使用它为模板commit一个没有docs的tomcat新镜像， tomcat02</span></span><br><span class="line">docker ps -l # 查看容器的id</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意：commit的时候，容器的名字不能有大写，否则报错：invalid reference format</span></span><br><span class="line">[root@ziyang docker]# docker commit -a=&quot;luziyangde-tomcat&quot; -m=&quot;no tomcat docs&quot; 8068c07e60b6 tomcat02:1.1</span><br><span class="line">sha256:7bf56388f5cfa6b8ced458e3e7f7a78c9b37d5dce08e229de628a157673643b1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">[root@z# </span><span class="language-bash">4、这个时候，我们的镜像都是可以使用的，大家可以启动原来的tomcat，和我们新的tomcat02来</span></span><br><span class="line">测试看看！</span><br><span class="line">[root@kuangshen ~]# docker run -it -p 8080:8080 tomcat02:1.1iyang docker]# docker images</span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">tomcat02            1.1                 7bf56388f5cf        51 seconds ago      650MB</span><br><span class="line">tomcat              latest              feba8d001e3f        2 months ago        649MB</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">4、这个时候，我们的镜像都是可以使用的，大家可以启动原来的tomcat，和我们新的tomcat02来测试看看！</span></span><br><span class="line">[root@ziyang docker]# docker run -it -p 8080:8080 tomcat02:1.1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果你想要保存你当前的状态，可以通过commit，来提交镜像，方便使用，类似于 VM 中的快照！</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+    
+    <div class="post__license">
+        <p>
+            <strong>本文作者：</strong>ZYang
+        </p>
+        <p>
+            <strong>
+                本文链接：
+            </strong>
+            <a href="https://luziyangde.github.io/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%90Docker%E9%95%9C%E5%83%8F%E3%80%91/">https://luziyangde.github.io/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89%E3%80%90Docker%E9%95%9C%E5%83%8F%E3%80%91/</a>
+        </p>
+        
+            <strong>
+                <p>文章默认使用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a> 协议进行许可，使用时请注意遵守协议。</p>
+
+            </strong>
+        
+    </div>
+ 
+    <div class="post-footer__meta"><p>更新于 2022-12-04 03:08</p></div> 
+    <div class="post-entry__tags"></div> 
+</article>
+
+
+    <div class="nav">
+        <div class="nav__prev">
+            
+                <a href="/2022/12/04/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E5%85%AD%EF%BC%89%E3%80%90DockerFile%E3%80%91/" class="nav__link">
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M589.088 790.624L310.464 512l278.624-278.624 45.248 45.248L400.96 512l233.376 233.376z" fill="#808080"></path></svg>
+                    </div>
+                    <div>
+                        <div class="nav__label">
+                            上一篇
+                        </div>
+                        <div class="nav__title">
+                            no title
+                        </div>
+                    </div>
+                </a>
+            
+        </div>
+        <div class="nav__next">
+            
+                <a href="/2022/12/04/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3HashMap%E7%9A%84%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" class="nav__link">
+                    <div>
+                        <div class="nav__label">
+                            下一篇
+                        </div>
+                        <div class="nav__title">
+                            no title
+                        </div>
+                    </div>
+                    <div>
+                        <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><path d="M434.944 790.624l-45.248-45.248L623.04 512l-233.376-233.376 45.248-45.248L713.568 512z" fill="#808080"></path></svg>
+                    </div>
+                </a>
+            
+        </div>
+    </div>
+
+
+
+
+
+</main>
+
+            <footer class="footer">
+     
+    <a href="#" class="button" id="b2t" aria-label="回到顶部" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="32" height="32">
+            <path d="M233.376 722.752L278.624 768 512 534.624 745.376 768l45.248-45.248L512 444.128zM192 352h640V288H192z" fill="currentColor"></path>
+        </svg>
+    </a>
+
+    
+
+
+    
+     
+ 
+
+ 
+    
+        
+        <p class="footer-copyright">
+            Copyright © 2022 <a href="/">ZYang&#39;s Blog</a>
+        </p>
+    
+    
+        
+            <p><a href="https://beian.miit.gov.cn/"  target="_blank">陕ICP备2020014327号-1</a></p>
+
+        
+    
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme - <a href="https://github.com/ChrAlpha/hexo-theme-cards" target="_blank">Cards</a></p>
+</footer>
+
+        </div>
+        
+    <script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+    <script>
+        window.lazyLoadOptions = {
+            elements_selector: ".lazy",
+            threshold: 0
+        };
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement('script');
+            hm.src = 'https://hm.baidu.com/hm.js?114733087574c33d0c1369375e45ba99';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+ 
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+    
+ 
+
+
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.css">
+
+    
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.4.1/dist/jquery.fancybox.min.js"></script>
+
+    <script>
+        let lazyloadT = Boolean('true'),
+            auto_fancybox = Boolean('true')
+        if (auto_fancybox) {
+            $(".post__content").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        } else {
+            $(".post__content").find("fancybox").find('img').each(function () {
+                var element = document.createElement("a");
+                $(element).attr("data-fancybox", "gallery");
+                $(element).attr("href", $(this).attr("src"));
+                if (lazyloadT) {
+                    $(element).attr("href", $(this).attr("data-srcset"));
+                }
+                $(this).wrap(element);
+            });
+        }
+    </script>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+    </body>
+</html>
