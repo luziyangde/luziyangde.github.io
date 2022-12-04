@@ -42,20 +42,20 @@
 <meta property="og:site_name" content="ZYang&#39;s Blog">
 <meta property="og:description" content="DockerFile大家想想，Nginx，tomcat，mysql 这些镜像都是哪里来的？官方能写，我们不能写吗？ 我们要研究自己如何做一个镜像，而且我们写的微服务项目以及springboot打包上云部署，Docker就是 最方便的。 微服务打包成镜像，任何装了Docker的地方，都可以下载使用，极其的方便。 流程：开发应用&#x3D;&gt;DockerFile&#x3D;&gt;打包为镜像&amp;#">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210312212545689.png">
-<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210312212739742.png">
-<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314173633523.png">
-<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314173921825.png">
-<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314174232942.png">
-<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314174302496.png">
-<meta property="og:image" content="http://image.luziyangde.cn//img/image-20210314174525809.png">
+<meta property="og:image" content="https://image.luziyangde.cn//img/image-20210312212545689.png">
+<meta property="og:image" content="https://image.luziyangde.cn//img/image-20210312212739742.png">
+<meta property="og:image" content="https://image.luziyangde.cn//img/image-20210314173633523.png">
+<meta property="og:image" content="https://image.luziyangde.cn//img/image-20210314173921825.png">
+<meta property="og:image" content="https://image.luziyangde.cn//img/image-20210314174232942.png">
+<meta property="og:image" content="https://image.luziyangde.cn//img/image-20210314174302496.png">
+<meta property="og:image" content="https://image.luziyangde.cn//img/image-20210314174525809.png">
 <meta property="article:published_time" content="2021-03-11T17:20:00.000Z">
 <meta property="article:modified_time" content="2022-12-04T11:16:00.000Z">
 <meta property="article:author" content="ZYang">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="dockerfile">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://image.luziyangde.cn//img/image-20210312212545689.png">
+<meta name="twitter:image" content="https://image.luziyangde.cn//img/image-20210312212545689.png">
 
 
     
@@ -211,10 +211,10 @@
 <p>3、docker run</p>
 <p>dockerfile文件我们刚才已经编写过了一次，这里我们继续使用 centos 来看！</p>
 <p>地址：<a target="_blank" rel="noopener" href="https://hub.docker.com/_/centos">https://hub.docker.com/_/centos</a></p>
-<p><img src="http://image.luziyangde.cn//img/image-20210312212545689.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210312212545689.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210312212545689"></p>
-<img src="http://image.luziyangde.cn//img/image-20210312212739742.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210312212739742.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210312212739742" style="zoom: 67%;" />
+<p><img src="https://image.luziyangde.cn//img/image-20210312212545689.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210312212545689.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210312212545689"></p>
+<img src="https://image.luziyangde.cn//img/image-20210312212739742.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210312212739742.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210312212739742" style="zoom: 67%;" />
 
-<p><img src="http://image.luziyangde.cn//img/image-20210314173633523.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314173633523.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314173633523"></p>
+<p><img src="https://image.luziyangde.cn//img/image-20210314173633523.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210314173633523.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314173633523"></p>
 <h3 id="DockerFile构建过程"><a href="#DockerFile构建过程" class="headerlink" title="DockerFile构建过程"></a>DockerFile构建过程</h3><p><strong>基础知识：</strong></p>
 <p>1、每条保留字指令都必须为大写字母且后面要跟随至少一个参数</p>
 <p>2、指令按照从上到下，顺序执行</p>
@@ -234,7 +234,7 @@
 <li>Docker 容器则是软件的运行状态 （客户下载安装执行）</li>
 </ul>
 <p>DockerFile 面向开发，Docker镜像成为交付标准，Docker容器则涉及部署与运维，三者缺一不可！</p>
-<img src="http://image.luziyangde.cn//img/image-20210314173921825.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314173921825.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314173921825" style="zoom:67%;" />
+<img src="https://image.luziyangde.cn//img/image-20210314173921825.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210314173921825.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314173921825" style="zoom:67%;" />
 
 <p>DockerFile：需要定义一个DockerFile，DockerFile定义了进程需要的一切东西。DockerFile涉及的内容 包括执行代码或者是文件、环境变量、依赖包、运行时环境、动态链接库、操作系统的发行版、服务进程和内核进程（当引用进行需要和系统服务和内核进程打交道，这时需要考虑如何设计 namespace的权限控制）等等。</p>
 <p>Docker镜像：在DockerFile 定义了一个文件之后，Docker build 时会产生一个Docker镜像，当运行 Docker 镜像时，会真正开始提供服务；</p>
@@ -242,10 +242,10 @@
 <h3 id="DockerFile指令"><a href="#DockerFile指令" class="headerlink" title="DockerFile指令"></a>DockerFile指令</h3><p><strong>关键字：</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FROM # 基础镜像，当前新镜像是基于哪个镜像的</span><br><span class="line">MAINTAINER # 镜像维护者的姓名混合邮箱地址</span><br><span class="line">RUN # 容器构建时需要运行的命令</span><br><span class="line">EXPOSE # 当前容器对外保留出的端口</span><br><span class="line">WORKDIR # 指定在创建容器后，终端默认登录的进来工作目录，一个落脚点</span><br><span class="line">ENV # 用来在构建镜像过程中设置环境变量</span><br><span class="line">ADD # 将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包</span><br><span class="line">COPY # 类似ADD，拷贝文件和目录到镜像中！</span><br><span class="line">VOLUME # 容器数据卷，用于数据保存和持久化工作</span><br><span class="line">CMD # 指定一个容器启动时要运行的命令，dockerFile中可以有多个CMD指令，但只有最后一个生效！</span><br><span class="line">ENTRYPOINT # 指定一个容器启动时要运行的命令！和CMD一样</span><br><span class="line">ONBUILD # 当构建一个被继承的DockerFile时运行命令，父镜像在被子镜像继承后，父镜像的ONBUILD被触发</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://image.luziyangde.cn//img/image-20210314174232942.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314174232942.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174232942"></p>
-<p><img src="http://image.luziyangde.cn//img/image-20210314174302496.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314174302496.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174302496"></p>
+<p><img src="https://image.luziyangde.cn//img/image-20210314174232942.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210314174232942.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174232942"></p>
+<p><img src="https://image.luziyangde.cn//img/image-20210314174302496.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210314174302496.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174302496"></p>
 <h3 id="实战测试"><a href="#实战测试" class="headerlink" title="实战测试"></a>实战测试</h3><p>Docker Hub 中99% 的镜像都是通过在base镜像（Scratch）中安装和配置需要的软件构建出来的</p>
-<p><img src="http://image.luziyangde.cn//img/image-20210314174525809.png" class="lazy" data-srcset="http://image.luziyangde.cn//img/image-20210314174525809.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174525809"></p>
+<p><img src="https://image.luziyangde.cn//img/image-20210314174525809.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210314174525809.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210314174525809"></p>
 <blockquote>
 <p>自定义一个 centos</p>
 </blockquote>
