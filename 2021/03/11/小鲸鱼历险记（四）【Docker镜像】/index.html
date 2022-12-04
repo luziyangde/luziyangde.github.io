@@ -219,16 +219,16 @@
 <p>Docker的镜像实际上由一层一层的文件系统组成，这种层级的文件系统UnionFS。</p>
 <p>bootfs(boot file system)主要包含bootloader和kernel, bootloader主要是引导加载kernel, Linux刚启动时会加载bootfs文件系统，在Docker镜像的最底层是bootfs。这一层与我们典型的Linux&#x2F;Unix系统是 一样的，包含boot加载器和内核。当boot加载完成之后整个内核就都在内存中了，此时内存的使用权已由bootfs转交给内核，此时系统也会卸载bootfs。</p>
 <p>rootfs (root file system) ，在bootfs之上。包含的就是典型 Linux 系统中的 &#x2F;dev, &#x2F;proc, &#x2F;bin, &#x2F;etc 等标 准目录和文件。rootfs就是各种不同的操作系统发行版，比如Ubuntu，Centos等等。</p>
-<img src="https://image.luziyangde.cn//img/image-20210311205319988.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311205319988.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311205319988" style="zoom: 67%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311205319988.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311205319988.png" srcset="img/loadingImage.png" alt="image-20210311205319988" style="zoom: 67%;" />
 
 <p>平时我们安装进虚拟机的CentOS都是好几个G，为什么Docker这里才200M？</p>
-<p><img src="https://image.luziyangde.cn//img/image-20210311205518873.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311205518873.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311205518873"></p>
+<p><img src="https://image.luziyangde.cn//img/image-20210311205518873.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311205518873.png" srcset="img/loadingImage.png" alt="image-20210311205518873"></p>
 <p>对于一个精简的OS，rootfs 可以很小，只需要包含最基本的命令，工具和程序库就可以了，因为底层直接用Host的kernel，自己只需要提供rootfs就可以了。由此可见对于不同的linux发行版, bootfs基本是一 致的, rootfs会有差别, 因此不同的发行版可以公用bootfs。</p>
 <h3 id="3、分层理解"><a href="#3、分层理解" class="headerlink" title="3、分层理解"></a>3、分层理解</h3><blockquote>
 <p>分层的镜像</p>
 </blockquote>
 <p>我们可以去下载一个镜像，注意观察下载的日志输出，可以看到是一层一层的在下载！</p>
-<p><img src="https://image.luziyangde.cn//img/image-20210311205951274.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311205951274.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311205951274"></p>
+<p><img src="https://image.luziyangde.cn//img/image-20210311205951274.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311205951274.png" srcset="img/loadingImage.png" alt="image-20210311205951274"></p>
 <p>思考：为什么Docker镜像要采用这种分层的结构呢？</p>
 <p>最大的好处，我觉得莫过于是资源共享了！比如有多个镜像都从相同的Base镜像构建而来，那么宿主机只需在磁盘上保留一份base镜像，同时内存中也只需要加载一份base镜像，这样就可以为所有的容器服 务了，而且镜像的每一层都可以被共享。</p>
 <p>查看镜像分层的方式可以通过 <code>docker image inspect</code> 命令！</p>
@@ -238,21 +238,21 @@
 <p>所有的 Docker 镜像都起始于一个基础镜像层，当进行修改或增加新的内容时，就会在当前镜像层之 上，创建新的镜像层。</p>
 <p>举一个简单的例子，假如基于 Ubuntu Linux 16.04 创建一个新的镜像，这就是新镜像的第一层；如果在该镜像中添加 Python包，就会在基础镜像层之上创建第二个镜像层；如果继续添加一个安全补丁，就会创建第三个镜像层。</p>
 <p>该镜像当前已经包含 3 个镜像层，如下图所示（这只是一个用于演示的很简单的例子）。</p>
-<img src="https://image.luziyangde.cn//img/20210311210422.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210311210422.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" style="zoom: 67%;" />
+<img src="https://image.luziyangde.cn//img/20210311210422.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210311210422.png" srcset="img/loadingImage.png" style="zoom: 67%;" />
 
 <p>在添加额外的镜像层的同时，镜像始终保持是当前所有镜像的组合，理解这一点非常重要。下图中举了 一个简单的例子，每个镜像层包含 3 个文件，而镜像包含了来自两个镜像层的 6 个文件。</p>
-<img src="https://image.luziyangde.cn//img/image-20210311210606341.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311210606341.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311210606341" style="zoom: 67%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311210606341.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311210606341.png" srcset="img/loadingImage.png" alt="image-20210311210606341" style="zoom: 67%;" />
 
 <p>上图中的镜像层跟之前图中的略有区别，主要目的是便于展示文件。</p>
 <p>下图中展示了一个稍微复杂的三层镜像，在外部看来整个镜像只有 6 个文件，这是因为最上层中的文件 7 是文件 5 的一个更新版本。</p>
-<img src="https://image.luziyangde.cn//img/image-20210311210736070.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311210736070.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311210736070" style="zoom:67%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311210736070.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311210736070.png" srcset="img/loadingImage.png" alt="image-20210311210736070" style="zoom:67%;" />
 
 <p>这种情况下，上层镜像层中的文件覆盖了底层镜像层中的文件。这样就使得文件的更新版本作为一个新镜像层添加到镜像当中。</p>
 <p>Docker 通过存储引擎（新版本采用快照机制）的方式来实现镜像层堆栈，并保证多镜像层对外展示为统 一的文件系统。</p>
 <p>Linux 上可用的存储引擎有 AUFS、Overlay2、Device Mapper、Btrfs 以及 ZFS。顾名思义，每种存储引擎都基于 Linux 中对应的文件系统或者块设备技术，并且每种存储引擎都有其独有的性能特点。</p>
 <p>Docker 在 Windows 上仅支持 windowsfilter 一种存储引擎，该引擎基于 NTFS 文件系统之上实现了分层和 CoW[1]。</p>
 <p>下图展示了与系统显示相同的三层镜像。所有镜像层堆叠并合并，对外提供统一的视图。</p>
-<img src="https://image.luziyangde.cn//img/image-20210311210939441.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311210939441.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311210939441" style="zoom:67%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311210939441.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311210939441.png" srcset="img/loadingImage.png" alt="image-20210311210939441" style="zoom:67%;" />
 
 <blockquote>
 <p>特点</p>
@@ -352,7 +352,7 @@
     
         
         <p class="footer-copyright">
-            Copyright © 2022 <a href="/">ZYang&#39;s Blog</a>
+            Copyright © 2020&nbsp;-&nbsp;2022 <a href="/">ZYang&#39;s Blog</a>
         </p>
     
     

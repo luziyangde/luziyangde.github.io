@@ -206,7 +206,7 @@
 </div>
     <div class="post__content">
         <h3 id="1、Docker的基本组成"><a href="#1、Docker的基本组成" class="headerlink" title="1、Docker的基本组成"></a>1、Docker的基本组成</h3><p><strong>Docker的架构图：</strong></p>
-<img src="https://image.luziyangde.cn//img/image-20210311173012319.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311173012319.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311173012319" style="zoom: 80%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311173012319.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311173012319.png" srcset="img/loadingImage.png" alt="image-20210311173012319" style="zoom: 80%;" />
 
 <p><strong>镜像（image）：</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很</span><br><span class="line">多容器。 就好似 Java 中的 类和对象，类就是镜像，容器就是对象！</span><br></pre></td></tr></table></figure>
@@ -269,7 +269,7 @@
 <p>2、注册一个属于自己的阿里云账户(可复用淘宝账号)</p>
 <p>3、进入管理控制台设置密码，开通</p>
 <p>4、查看镜像加速器自己的</p>
-<img src="https://image.luziyangde.cn//img/image-20210311200426151.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311200426151.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311200426151" style="zoom:67%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311200426151.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311200426151.png" srcset="img/loadingImage.png" alt="image-20210311200426151" style="zoom:67%;" />
 
 <p>5、配置镜像加速</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://2z7hcudf.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
@@ -281,16 +281,16 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
 
 <p>2、run干了什么？</p>
-<img src="https://image.luziyangde.cn//img/image-20210311201503968.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311201503968.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311201503968" style="zoom: 80%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311201503968.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311201503968.png" srcset="img/loadingImage.png" alt="image-20210311201503968" style="zoom: 80%;" />
 
 <h3 id="5、底层原理"><a href="#5、底层原理" class="headerlink" title="5、底层原理"></a>5、底层原理</h3><p><strong>Docker是怎么工作的</strong></p>
 <p>Docker是一个Client-Server结构的系统，Docker守护进程运行在主机上， 然后通过Socket连接从客户端访问，守护进程从客户端接受命令并管理运行在主机上的容器。 容器，是一个运行时环境，就是我们前面说到的集装箱。</p>
-<img src="https://image.luziyangde.cn//img/image-20210311201716862.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311201716862.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311201716862" style="zoom: 67%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311201716862.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311201716862.png" srcset="img/loadingImage.png" alt="image-20210311201716862" style="zoom: 67%;" />
 
 <p><strong>为什么Docker比较 VM 快</strong></p>
 <p>1、docker有着比虚拟机更少的抽象层。由于docker不需要Hypervisor实现硬件资源虚拟化，运行在 docker容器上的程序直接使用的都是实际物理机的硬件资源。因此在CPU、内存利用率上docker将会在效率上有明显优势。</p>
 <p>2、docker利用的是宿主机的内核，而不需要Guest OS。因此,当新建一个容器时,docker不需要和虚拟机 一样重新加载一个操作系统内核。仍而避免引寻、加载操作系统内核返个比较费时费资源的过程,当新建 一个虚拟机时,虚拟机软件需要加载Guest OS,返个新建过程是分钟级别的。而docker由于直接利用宿主 机的操作系统,则省略了返个过程,因此新建一个docker容器只需要几秒钟。</p>
-<img src="https://image.luziyangde.cn//img/image-20210311201947173.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311201947173.png" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAABlBMVEXMzMyWlpYU2uzLAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAACklEQVQImWNgAAAAAgAB9HFkpgAAAABJRU5ErkJggg==" alt="image-20210311201947173" style="zoom:80%;" />
+<img src="https://image.luziyangde.cn//img/image-20210311201947173.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311201947173.png" srcset="img/loadingImage.png" alt="image-20210311201947173" style="zoom:80%;" />
 
     </div>
     
@@ -379,7 +379,7 @@
     
         
         <p class="footer-copyright">
-            Copyright © 2022 <a href="/">ZYang&#39;s Blog</a>
+            Copyright © 2020&nbsp;-&nbsp;2022 <a href="/">ZYang&#39;s Blog</a>
         </p>
     
     
