@@ -72,13 +72,13 @@
 
     
     
-        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow.css" media="none" >
+    
+        <link rel="stylesheet" id="hl-default-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-light.min.css" media="none" >
         
-            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/tomorrow-night.css" media="none">
+            <link rel="stylesheet" id="hl-dark-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-dark.min.css" media="none">
         
     
 
-    
     
 
     
@@ -245,27 +245,165 @@
 <p>下面我们采用“链表法（拉链法）”，也就是说，在这个位置，通过一个链表存放冲突数字。</p>
 <p><img src="https://image.luziyangde.cn//img/20210309112158.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210309112158.png" srcset="img/loadingImage.png"></p>
 <h3 id="hashcode-和-equals"><a href="#hashcode-和-equals" class="headerlink" title="hashcode 和 equals"></a>hashcode 和 equals</h3><p>当我们用HashMap存入自定义类时，如果不重写 <code>equals</code> 和 <code>hashCode</code> 方法，得到的结果可能会和我们预期的不一样。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">package</span> cn.luziyangde.hash;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZYang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-03-09 13:19</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Key</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getId</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Key</span><span class="params">(Integer id)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WithoutHashCode</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Key</span> <span class="variable">k1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Key</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="type">Key</span> <span class="variable">k2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Key</span>(<span class="number">1</span>);</span><br><span class="line">        HashMap&lt;Key, String&gt; hm = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        hm.put(k1, <span class="string">&quot;Key with id is 1&quot;</span>);</span><br><span class="line">        System.out.println(k1.hashCode());</span><br><span class="line">        System.out.println(k2.hashCode());</span><br><span class="line">        System.out.println(hm.get(k2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java">
+<span class="hljs-keyword">package</span> cn.luziyangde.hash;
+
+<span class="hljs-keyword">import</span> java.util.HashMap;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> ZYang</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2021-03-09 13:19</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Key</span> &#123;
+    <span class="hljs-keyword">private</span> Integer id;
+
+    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">getId</span><span class="hljs-params">()</span> &#123;
+        <span class="hljs-keyword">return</span> id;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Key</span><span class="hljs-params">(Integer id)</span> &#123;
+        <span class="hljs-built_in">this</span>.id = id;
+    &#125;
+&#125;
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WithoutHashCode</span> &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
+        <span class="hljs-type">Key</span> <span class="hljs-variable">k1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Key</span>(<span class="hljs-number">1</span>);
+        <span class="hljs-type">Key</span> <span class="hljs-variable">k2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Key</span>(<span class="hljs-number">1</span>);
+        HashMap&lt;Key, String&gt; hm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();
+        hm.put(k1, <span class="hljs-string">&quot;Key with id is 1&quot;</span>);
+        System.out.println(k1.hashCode());
+        System.out.println(k2.hashCode());
+        System.out.println(hm.get(k2));
+    &#125;
+&#125;
+</code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210309135057.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210309135057.png" srcset="img/loadingImage.png"></p>
 <p>当我们向HashMap存放k1时，首先会调用key这个类的hashCode方法，计算它的hash值，随后把k1放入这个hash值所指引的内存位置。</p>
 <p>但是由于key这个类没有重写equals和hashCode方法，它就会默认调用Object类的hashCode方法，而Object类里的hashCode方法返回的hash值，其实k1的内存地址，假设是1000。</p>
 <p>这个时候，如果我们用k2去拿，它也会计算k2的hash值，随后用这个hash值到相应的位置去拿，但是k1和k2的内存地址是不一样的，因此，用k2无法拿到k1存放在HashMap中的值。</p>
 <p><img src="https://image.luziyangde.cn//img/20210309132921.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210309132921.png" srcset="img/loadingImage.png"></p>
-<h4 id="重写Key类的hashCode方法"><a href="#重写Key类的hashCode方法" class="headerlink" title="重写Key类的hashCode方法"></a>重写Key类的hashCode方法</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.luziyangde.hash;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZYang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-03-09 13:19</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Key</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getId</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Key</span><span class="params">(Integer id)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WithoutHashCode</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Key</span> <span class="variable">k1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Key</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="type">Key</span> <span class="variable">k2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Key</span>(<span class="number">1</span>);</span><br><span class="line">        HashMap&lt;Key, String&gt; hm = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        hm.put(k1, <span class="string">&quot;Key with id is 1&quot;</span>);</span><br><span class="line">        System.out.println(k1.hashCode());</span><br><span class="line">        System.out.println(k2.hashCode());</span><br><span class="line">        System.out.println(hm.get(k2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="重写Key类的hashCode方法"><a href="#重写Key类的hashCode方法" class="headerlink" title="重写Key类的hashCode方法"></a>重写Key类的hashCode方法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.luziyangde.hash;
+
+<span class="hljs-keyword">import</span> java.util.HashMap;
+<span class="hljs-keyword">import</span> java.util.Objects;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> ZYang</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2021-03-09 13:19</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Key</span> &#123;
+    <span class="hljs-keyword">private</span> Integer id;
+
+    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">getId</span><span class="hljs-params">()</span> &#123;
+        <span class="hljs-keyword">return</span> id;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Key</span><span class="hljs-params">(Integer id)</span> &#123;
+        <span class="hljs-built_in">this</span>.id = id;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span> &#123;
+        <span class="hljs-keyword">return</span> Objects.hash(id);
+    &#125;
+&#125;
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WithoutHashCode</span> &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
+        <span class="hljs-type">Key</span> <span class="hljs-variable">k1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Key</span>(<span class="hljs-number">1</span>);
+        <span class="hljs-type">Key</span> <span class="hljs-variable">k2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Key</span>(<span class="hljs-number">1</span>);
+        HashMap&lt;Key, String&gt; hm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();
+        hm.put(k1, <span class="hljs-string">&quot;Key with id is 1&quot;</span>);
+        System.out.println(k1.hashCode());
+        System.out.println(k2.hashCode());
+        System.out.println(hm.get(k2));
+    &#125;
+&#125;
+</code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210309135230.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210309135230.png" srcset="img/loadingImage.png"></p>
 <p>发现输出的k1和k2的hashCode是一样的，但是k2依然无法获取k1存放在HashMap中的值。</p>
 <p>我们重写hashCode方法之后，k1和k2确实具有了相同的hash值，k1和k2确实在Hash表中的下标是一致的，但是由于Hash函数处理Hash冲突的机制，会在k1这个位置维护一个链表，上面依次存放着k1和k2。</p>
 <p>所以，尽管k1和k2的hash值一样，但是二者存放的地址却不相同（由于k1和k2是new出来的，所以二者的地址绝不可能一样），因为没有重写equals方法，所以默认调用Object的equals方法，二者比较的仍然是地址，所以k2无法取到k1的值。</p>
 <p><img src="https://image.luziyangde.cn//img/20210309134740.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210309134740.png" srcset="img/loadingImage.png"></p>
-<h4 id="重写Key类的equals和hashCode方法"><a href="#重写Key类的equals和hashCode方法" class="headerlink" title="重写Key类的equals和hashCode方法"></a>重写Key类的equals和hashCode方法</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.luziyangde.hash;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> ZYang</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2021-03-09 13:19</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Key</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">getId</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Key</span><span class="params">(Integer id)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span> == o) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="literal">null</span> || getClass() != o.getClass()) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">Key</span> <span class="variable">key</span> <span class="operator">=</span> (Key) o;</span><br><span class="line">        <span class="keyword">return</span> id.equals(key.id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Objects.hash(id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WithoutHashCode</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Key</span> <span class="variable">k1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Key</span>(<span class="number">1</span>);</span><br><span class="line">        <span class="type">Key</span> <span class="variable">k2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Key</span>(<span class="number">1</span>);</span><br><span class="line">        HashMap&lt;Key, String&gt; hm = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">        hm.put(k1, <span class="string">&quot;Key with id is 1&quot;</span>);</span><br><span class="line">        System.out.println(hm.get(k2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="重写Key类的equals和hashCode方法"><a href="#重写Key类的equals和hashCode方法" class="headerlink" title="重写Key类的equals和hashCode方法"></a>重写Key类的equals和hashCode方法</h4><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.luziyangde.hash;
+
+<span class="hljs-keyword">import</span> java.util.HashMap;
+<span class="hljs-keyword">import</span> java.util.Objects;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> ZYang</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@date</span> 2021-03-09 13:19</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">Key</span> &#123;
+    <span class="hljs-keyword">private</span> Integer id;
+
+    <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">getId</span><span class="hljs-params">()</span> &#123;
+        <span class="hljs-keyword">return</span> id;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Key</span><span class="hljs-params">(Integer id)</span> &#123;
+        <span class="hljs-built_in">this</span>.id = id;
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object o)</span> &#123;
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span> == o) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">if</span> (o == <span class="hljs-literal">null</span> || getClass() != o.getClass()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-type">Key</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> (Key) o;
+        <span class="hljs-keyword">return</span> id.equals(key.id);
+    &#125;
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span> &#123;
+        <span class="hljs-keyword">return</span> Objects.hash(id);
+    &#125;
+&#125;
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">WithoutHashCode</span> &#123;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;
+        <span class="hljs-type">Key</span> <span class="hljs-variable">k1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Key</span>(<span class="hljs-number">1</span>);
+        <span class="hljs-type">Key</span> <span class="hljs-variable">k2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Key</span>(<span class="hljs-number">1</span>);
+        HashMap&lt;Key, String&gt; hm = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();
+        hm.put(k1, <span class="hljs-string">&quot;Key with id is 1&quot;</span>);
+        System.out.println(hm.get(k2));
+    &#125;
+&#125;
+</code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210309135312.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210309135312.png" srcset="img/loadingImage.png"></p>
 <h4 id="在什么场景下重写呢？"><a href="#在什么场景下重写呢？" class="headerlink" title="在什么场景下重写呢？"></a>在什么场景下重写呢？</h4><p>如果我们在HashMap里存放自定义的键时，我们就需要重写自定义类的hashCode和equals方法。</p>
 <p>一般，我们在equals方法里定义判断两个对象是否相等的标准，比如，这里我们可以定义：如果两个对象的id一样，就认为这两个对象一样。</p>
 <p>而在定义hashCode时，我们一般可以用主键的hashCode方法，比如这里我们可以用 <code>id.hashCode()</code> 方法来重写hashCode方法。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> Objects.hash(id);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">hash</span><span class="params">(Object... values)</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> Arrays.hashCode(values);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">(Object a[])</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (a == <span class="literal">null</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (Object element : a)</span><br><span class="line">		result = <span class="number">31</span> * result + (element == <span class="literal">null</span> ? <span class="number">0</span> : element.hashCode());</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span> &#123;
+	<span class="hljs-keyword">return</span> Objects.hash(id);
+&#125;
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hash</span><span class="hljs-params">(Object... values)</span> &#123;
+	<span class="hljs-keyword">return</span> Arrays.hashCode(values);
+&#125;
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">(Object a[])</span> &#123;
+	<span class="hljs-keyword">if</span> (a == <span class="hljs-literal">null</span>)
+		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+	<span class="hljs-type">int</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+
+	<span class="hljs-keyword">for</span> (Object element : a)
+		result = <span class="hljs-number">31</span> * result + (element == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : element.hashCode());
+
+	<span class="hljs-keyword">return</span> result;
+&#125;</code></pre>
 
 <h4 id="在面试中如何引出这个话题？"><a href="#在面试中如何引出这个话题？" class="headerlink" title="在面试中如何引出这个话题？"></a>在面试中如何引出这个话题？</h4><ul>
 <li>自我介绍<ul>

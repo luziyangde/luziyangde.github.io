@@ -72,13 +72,13 @@
 
     
     
-        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow.css" media="none" >
+    
+        <link rel="stylesheet" id="hl-default-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-light.min.css" media="none" >
         
-            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/tomorrow-night.css" media="none">
+            <link rel="stylesheet" id="hl-dark-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-dark.min.css" media="none">
         
     
 
-    
     
 
     
@@ -248,7 +248,18 @@
 <p>Docker镜像：在DockerFile 定义了一个文件之后，Docker build 时会产生一个Docker镜像，当运行 Docker 镜像时，会真正开始提供服务；</p>
 <p>Docker容器：容器是直接提供服务的。</p>
 <h3 id="DockerFile指令"><a href="#DockerFile指令" class="headerlink" title="DockerFile指令"></a>DockerFile指令</h3><p><strong>关键字：</strong></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">FROM # 基础镜像，当前新镜像是基于哪个镜像的</span><br><span class="line">MAINTAINER # 镜像维护者的姓名混合邮箱地址</span><br><span class="line">RUN # 容器构建时需要运行的命令</span><br><span class="line">EXPOSE # 当前容器对外保留出的端口</span><br><span class="line">WORKDIR # 指定在创建容器后，终端默认登录的进来工作目录，一个落脚点</span><br><span class="line">ENV # 用来在构建镜像过程中设置环境变量</span><br><span class="line">ADD # 将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包</span><br><span class="line">COPY # 类似ADD，拷贝文件和目录到镜像中！</span><br><span class="line">VOLUME # 容器数据卷，用于数据保存和持久化工作</span><br><span class="line">CMD # 指定一个容器启动时要运行的命令，dockerFile中可以有多个CMD指令，但只有最后一个生效！</span><br><span class="line">ENTRYPOINT # 指定一个容器启动时要运行的命令！和CMD一样</span><br><span class="line">ONBUILD # 当构建一个被继承的DockerFile时运行命令，父镜像在被子镜像继承后，父镜像的ONBUILD被触发</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">FROM # 基础镜像，当前新镜像是基于哪个镜像的
+MAINTAINER # 镜像维护者的姓名混合邮箱地址
+RUN # 容器构建时需要运行的命令
+EXPOSE # 当前容器对外保留出的端口
+WORKDIR # 指定在创建容器后，终端默认登录的进来工作目录，一个落脚点
+ENV # 用来在构建镜像过程中设置环境变量
+ADD # 将宿主机目录下的文件拷贝进镜像且ADD命令会自动处理URL和解压tar压缩包
+COPY # 类似ADD，拷贝文件和目录到镜像中！
+VOLUME # 容器数据卷，用于数据保存和持久化工作
+CMD # 指定一个容器启动时要运行的命令，dockerFile中可以有多个CMD指令，但只有最后一个生效！
+ENTRYPOINT # 指定一个容器启动时要运行的命令！和CMD一样
+ONBUILD # 当构建一个被继承的DockerFile时运行命令，父镜像在被子镜像继承后，父镜像的ONBUILD被触发</code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/image-20210314174232942.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210314174232942.png" srcset="img/loadingImage.png" alt="image-20210314174232942"></p>
 <p><img src="https://image.luziyangde.cn//img/image-20210314174302496.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210314174302496.png" srcset="img/loadingImage.png" alt="image-20210314174302496"></p>

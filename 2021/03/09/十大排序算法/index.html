@@ -70,13 +70,13 @@
 
     
     
-        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow.css" media="none" >
+    
+        <link rel="stylesheet" id="hl-default-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-light.min.css" media="none" >
         
-            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/tomorrow-night.css" media="none">
+            <link rel="stylesheet" id="hl-dark-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-dark.min.css" media="none">
         
     
 
-    
     
 
     
@@ -217,12 +217,39 @@
 <li>原地排序：是</li>
 </ul>
 <p><strong>代码实现：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">insertSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; a.length; ++i) &#123;  <span class="comment">// n - 1 次插入</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">val</span> <span class="operator">=</span> a[i], j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (; j &gt;= <span class="number">0</span>; --j) &#123;  <span class="comment">// 寻找插入位置并移动数据</span></span><br><span class="line">            <span class="keyword">if</span> (a[j] &gt; val) a[j + <span class="number">1</span>] = a[j];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        a[j + <span class="number">1</span>] = val; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; a.length; ++i) &#123;  <span class="hljs-comment">// n - 1 次插入</span>
+        <span class="hljs-type">int</span> <span class="hljs-variable">val</span> <span class="hljs-operator">=</span> a[i], j = i - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> (; j &gt;= <span class="hljs-number">0</span>; --j) &#123;  <span class="hljs-comment">// 寻找插入位置并移动数据</span>
+            <span class="hljs-keyword">if</span> (a[j] &gt; val) a[j + <span class="hljs-number">1</span>] = a[j];
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">break</span>;
+        &#125;
+        a[j + <span class="hljs-number">1</span>] = val; 
+    &#125;
+&#125;</code></pre>
 
 <h4 id="二分插入"><a href="#二分插入" class="headerlink" title="二分插入"></a>二分插入</h4><blockquote>
 <p>寻找插入位置时，使用二分查找</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">insertSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; a.length; ++i) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">val</span> <span class="operator">=</span> a[i];</span><br><span class="line">        <span class="type">int</span> <span class="variable">ind</span> <span class="operator">=</span> bsearch(a, i);  <span class="comment">// 查找插入位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i - <span class="number">1</span>; j &gt;= ind; --j) <span class="comment">// 搬移元素</span></span><br><span class="line">            a[j + <span class="number">1</span>] = a[j];</span><br><span class="line">        a[ind] = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">bsearch</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> i)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">0</span>, r = i - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> l + ((r - l) &gt;&gt;&gt; <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (a[m] &lt;= a[i]) l = m + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> r = m - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> l;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; a.length; ++i) &#123;
+        <span class="hljs-type">int</span> <span class="hljs-variable">val</span> <span class="hljs-operator">=</span> a[i];
+        <span class="hljs-type">int</span> <span class="hljs-variable">ind</span> <span class="hljs-operator">=</span> bsearch(a, i);  <span class="hljs-comment">// 查找插入位置</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i - <span class="hljs-number">1</span>; j &gt;= ind; --j) <span class="hljs-comment">// 搬移元素</span>
+            a[j + <span class="hljs-number">1</span>] = a[j];
+        a[ind] = val;
+    &#125;
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">bsearch</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> i)</span> &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">l</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, r = i - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">while</span> (l &lt;= r) &#123;
+        <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> l + ((r - l) &gt;&gt;&gt; <span class="hljs-number">1</span>);
+        <span class="hljs-keyword">if</span> (a[m] &lt;= a[i]) l = m + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> r = m - <span class="hljs-number">1</span>;
+    &#125;
+    <span class="hljs-keyword">return</span> l;
+&#125;</code></pre>
 
 <p><strong>参考文档</strong></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903640256217102">https://juejin.cn/post/6844903640256217102</a></p>
@@ -233,10 +260,90 @@
 <p>一次插入两个数</p>
 </blockquote>
 <p><strong>官方源码</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> a the array to be sorted</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> left the index of the first element, inclusive, to be sorted</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> right the index of the last element, inclusive, to be sorted</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Skip the longest ascending sequence.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">while</span> (a[++left] &gt;= a[left - <span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Every element from adjoining part plays the role</span></span><br><span class="line"><span class="comment"> * of sentinel, therefore this allows us to avoid the</span></span><br><span class="line"><span class="comment"> * left range check on each iteration. Moreover, we use</span></span><br><span class="line"><span class="comment"> * the more optimized algorithm, so called pair insertion</span></span><br><span class="line"><span class="comment"> * sort, which is faster (in the context of Quicksort)</span></span><br><span class="line"><span class="comment"> * than traditional implementation of insertion sort.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> left; ++left &lt;= right; k = ++left) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">a1</span> <span class="operator">=</span> a[k], a2 = a[left];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (a1 &lt; a2) &#123;</span><br><span class="line">        a2 = a1; a1 = a[left];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (a1 &lt; a[--k]) &#123;</span><br><span class="line">        a[k + <span class="number">2</span>] = a[k];</span><br><span class="line">    &#125;</span><br><span class="line">    a[++k + <span class="number">1</span>] = a1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (a2 &lt; a[--k]) &#123;</span><br><span class="line">        a[k + <span class="number">1</span>] = a[k];</span><br><span class="line">    &#125;</span><br><span class="line">    a[k + <span class="number">1</span>] = a2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">last</span> <span class="operator">=</span> a[right];</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (last &lt; a[--right]) &#123;</span><br><span class="line">    a[right + <span class="number">1</span>] = a[right];</span><br><span class="line">&#125;</span><br><span class="line">a[right + <span class="number">1</span>] = last;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> a the array to be sorted</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> left the index of the first element, inclusive, to be sorted</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> right the index of the last element, inclusive, to be sorted</span>
+<span class="hljs-comment"> */</span>
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * Skip the longest ascending sequence.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">do</span> &#123;
+    <span class="hljs-keyword">if</span> (left &gt;= right) &#123;
+        <span class="hljs-keyword">return</span>;
+    &#125;
+&#125; <span class="hljs-keyword">while</span> (a[++left] &gt;= a[left - <span class="hljs-number">1</span>]);
+
+<span class="hljs-comment">/*</span>
+<span class="hljs-comment"> * Every element from adjoining part plays the role</span>
+<span class="hljs-comment"> * of sentinel, therefore this allows us to avoid the</span>
+<span class="hljs-comment"> * left range check on each iteration. Moreover, we use</span>
+<span class="hljs-comment"> * the more optimized algorithm, so called pair insertion</span>
+<span class="hljs-comment"> * sort, which is faster (in the context of Quicksort)</span>
+<span class="hljs-comment"> * than traditional implementation of insertion sort.</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> left; ++left &lt;= right; k = ++left) &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">a1</span> <span class="hljs-operator">=</span> a[k], a2 = a[left];
+
+    <span class="hljs-keyword">if</span> (a1 &lt; a2) &#123;
+        a2 = a1; a1 = a[left];
+    &#125;
+    <span class="hljs-keyword">while</span> (a1 &lt; a[--k]) &#123;
+        a[k + <span class="hljs-number">2</span>] = a[k];
+    &#125;
+    a[++k + <span class="hljs-number">1</span>] = a1;
+
+    <span class="hljs-keyword">while</span> (a2 &lt; a[--k]) &#123;
+        a[k + <span class="hljs-number">1</span>] = a[k];
+    &#125;
+    a[k + <span class="hljs-number">1</span>] = a2;
+&#125;
+
+<span class="hljs-type">int</span> <span class="hljs-variable">last</span> <span class="hljs-operator">=</span> a[right];
+
+<span class="hljs-keyword">while</span> (last &lt; a[--right]) &#123;
+    a[right + <span class="hljs-number">1</span>] = a[right];
+&#125;
+a[right + <span class="hljs-number">1</span>] = last;</code></pre>
 
 <p><strong>代码实现</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">pairInsertSort</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (r - l &lt; <span class="number">2</span>) <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> l;   <span class="comment">// 左边界</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 检测开头是否有升序段</span></span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (r &lt;= l) <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">while</span> (a[++l] &gt;= a[l - <span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l; ++l &lt;= r; i = ++l) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">v1</span> <span class="operator">=</span> a[i], v2 = a[l];</span><br><span class="line">        <span class="keyword">if</span> (v1 &lt; v2) &#123;  <span class="comment">// 维护 v1 &gt; v2</span></span><br><span class="line">            v2 = v1;</span><br><span class="line">            v1 = a[l];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 先插入较大元素 v1</span></span><br><span class="line">        <span class="keyword">while</span> (--i &gt;= left &amp;&amp; v1 &lt; a[i])</span><br><span class="line">            a[i + <span class="number">2</span>] = a[i];</span><br><span class="line">        a[++i + <span class="number">1</span>] = v1;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 再插入较小元素 v2</span></span><br><span class="line">        <span class="keyword">while</span> (--i &gt;= left &amp;&amp; v2 &lt; a[i])</span><br><span class="line">            a[i + <span class="number">1</span>] = a[i];</span><br><span class="line">        a[i + <span class="number">1</span>] = v2;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 处理多余元素</span></span><br><span class="line">        <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">tail</span> <span class="operator">=</span> a[r];</span><br><span class="line">            <span class="keyword">while</span> (--l &gt;= left &amp;&amp; tail &lt; a[l])</span><br><span class="line">                a[l + <span class="number">1</span>] = a[l];</span><br><span class="line">            a[l + <span class="number">1</span>] = tail;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">pairInsertSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    <span class="hljs-keyword">if</span> (r - l &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span>;
+
+    <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> l;   <span class="hljs-comment">// 左边界</span>
+
+    <span class="hljs-comment">// 检测开头是否有升序段</span>
+    <span class="hljs-keyword">do</span> &#123;
+        <span class="hljs-keyword">if</span> (r &lt;= l) <span class="hljs-keyword">return</span>;
+    &#125; <span class="hljs-keyword">while</span> (a[++l] &gt;= a[l - <span class="hljs-number">1</span>]);
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> l; ++l &lt;= r; i = ++l) &#123;
+        <span class="hljs-type">int</span> <span class="hljs-variable">v1</span> <span class="hljs-operator">=</span> a[i], v2 = a[l];
+        <span class="hljs-keyword">if</span> (v1 &lt; v2) &#123;  <span class="hljs-comment">// 维护 v1 &gt; v2</span>
+            v2 = v1;
+            v1 = a[l];
+        &#125;
+
+        <span class="hljs-comment">// 先插入较大元素 v1</span>
+        <span class="hljs-keyword">while</span> (--i &gt;= left &amp;&amp; v1 &lt; a[i])
+            a[i + <span class="hljs-number">2</span>] = a[i];
+        a[++i + <span class="hljs-number">1</span>] = v1;
+
+        <span class="hljs-comment">// 再插入较小元素 v2</span>
+        <span class="hljs-keyword">while</span> (--i &gt;= left &amp;&amp; v2 &lt; a[i])
+            a[i + <span class="hljs-number">1</span>] = a[i];
+        a[i + <span class="hljs-number">1</span>] = v2;
+
+        <span class="hljs-comment">// 处理多余元素</span>
+        <span class="hljs-keyword">if</span> (l == r) &#123;
+            <span class="hljs-type">int</span> <span class="hljs-variable">tail</span> <span class="hljs-operator">=</span> a[r];
+            <span class="hljs-keyword">while</span> (--l &gt;= left &amp;&amp; tail &lt; a[l])
+                a[l + <span class="hljs-number">1</span>] = a[l];
+            a[l + <span class="hljs-number">1</span>] = tail;
+        &#125;
+    &#125;
+&#125;</code></pre>
 
 <p><strong>参考链接</strong></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/kaaass/KFlight/blob/7aa7b64e8f7dcf40a686af58952840bd690cbc88/src/main/java/net/kaaass/kflight/algorithm/sort/BiInsertSort.java#L14">https://github.com/kaaass/KFlight/blob/7aa7b64e8f7dcf40a686af58952840bd690cbc88/src/main/java/net/kaaass/kflight/algorithm/sort/BiInsertSort.java#L14</a></p>
@@ -259,7 +366,21 @@
 <li>原地排序：是</li>
 </ul>
 <p><strong>代码实现：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">shellSort</span><span class="params">(<span class="type">int</span>[] arr)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> arr.length;</span><br><span class="line">    <span class="type">int</span> temp;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> length / <span class="number">2</span>; step &gt;= <span class="number">1</span>; step /= <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> step; i &lt; length; i++) &#123;</span><br><span class="line">            temp = arr[i];</span><br><span class="line">            <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i - step;</span><br><span class="line">            <span class="keyword">while</span> (j &gt;= <span class="number">0</span> &amp;&amp; arr[j] &gt; temp) &#123;</span><br><span class="line">                arr[j + step] = arr[j];</span><br><span class="line">                j -= step;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[j + step] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">shellSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span> &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">length</span> <span class="hljs-operator">=</span> arr.length;
+    <span class="hljs-type">int</span> temp;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">step</span> <span class="hljs-operator">=</span> length / <span class="hljs-number">2</span>; step &gt;= <span class="hljs-number">1</span>; step /= <span class="hljs-number">2</span>) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> step; i &lt; length; i++) &#123;
+            temp = arr[i];
+            <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i - step;
+            <span class="hljs-keyword">while</span> (j &gt;= <span class="hljs-number">0</span> &amp;&amp; arr[j] &gt; temp) &#123;
+                arr[j + step] = arr[j];
+                j -= step;
+            &#125;
+            arr[j + step] = temp;
+        &#125;
+    &#125;
+&#125;</code></pre>
 
 <h3 id="2、选择排序"><a href="#2、选择排序" class="headerlink" title="2、选择排序"></a>2、选择排序</h3><blockquote>
 <p>将<strong>待排序数组</strong>分为<strong>已排序</strong>和<strong>未排序</strong>两个数组，每次从未排序数组中选择一个<strong>最值</strong>，放入已排序数组的末尾，此过程重复 n 次。</p>
@@ -275,7 +396,18 @@
 <li>原地排序：是</li>
 </ul>
 <p><strong>代码实现：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">selectSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; a.length - <span class="number">1</span>; ++i) &#123;  <span class="comment">// n - 1 次选择</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; a.length; ++j) &#123;  <span class="comment">// 查找最值</span></span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[min]) min = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 交换</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[i]; </span><br><span class="line">        a[i] = a[min];</span><br><span class="line">        a[min] = tmp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">selectSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length - <span class="hljs-number">1</span>; ++i) &#123;  <span class="hljs-comment">// n - 1 次选择</span>
+        <span class="hljs-type">int</span> <span class="hljs-variable">min</span> <span class="hljs-operator">=</span> i;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i + <span class="hljs-number">1</span>; j &lt; a.length; ++j) &#123;  <span class="hljs-comment">// 查找最值</span>
+            <span class="hljs-keyword">if</span> (a[j] &lt; a[min]) min = j;
+        &#125;
+        <span class="hljs-comment">// 交换</span>
+        <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[i]; 
+        a[i] = a[min];
+        a[min] = tmp;
+    &#125;
+&#125;</code></pre>
 
 <h3 id="3、冒泡排序"><a href="#3、冒泡排序" class="headerlink" title="3、冒泡排序"></a>3、冒泡排序</h3><blockquote>
 <p>对于待排序数组中的元素，从数组首部或尾部开始，元素之间两两进行比较，根据排序规则（从大到小&#x2F;从小到大），进行交换；</p>
@@ -290,36 +422,211 @@
 </ul>
 <p><strong>代码实现：</strong></p>
 <p><strong>从前往后冒泡：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubbleSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; a.length - <span class="number">1</span>; ++i) &#123;  <span class="comment">// n -1 趟冒泡</span></span><br><span class="line">        <span class="comment">// 一趟冒泡的比较次数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; a.length - i; ++j) &#123;   <span class="comment">// j 的范围：[1, len - i)</span></span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[j - <span class="number">1</span>]) &#123;  <span class="comment">// 是否交换</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[j];</span><br><span class="line">                a[j] = a[j - <span class="number">1</span>];</span><br><span class="line">                a[j - <span class="number">1</span>] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubbleSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length - <span class="hljs-number">1</span>; ++i) &#123;  <span class="hljs-comment">// n -1 趟冒泡</span>
+        <span class="hljs-comment">// 一趟冒泡的比较次数</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt; a.length - i; ++j) &#123;   <span class="hljs-comment">// j 的范围：[1, len - i)</span>
+            <span class="hljs-keyword">if</span> (a[j] &lt; a[j - <span class="hljs-number">1</span>]) &#123;  <span class="hljs-comment">// 是否交换</span>
+                <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[j];
+                a[j] = a[j - <span class="hljs-number">1</span>];
+                a[j - <span class="hljs-number">1</span>] = tmp;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
 
 <p><strong>另一种形式：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubbleSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; a.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; a.length - i - <span class="number">1</span>; ++j) &#123;  <span class="comment">// j 的范围：[0, len - i - 1)</span></span><br><span class="line">            <span class="keyword">if</span> (a[j] &gt; a[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[j];</span><br><span class="line">                a[j] = a[j + <span class="number">1</span>];</span><br><span class="line">                a[j + <span class="number">1</span>] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubbleSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length - <span class="hljs-number">1</span>; ++i) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; a.length - i - <span class="hljs-number">1</span>; ++j) &#123;  <span class="hljs-comment">// j 的范围：[0, len - i - 1)</span>
+            <span class="hljs-keyword">if</span> (a[j] &gt; a[j + <span class="hljs-number">1</span>]) &#123;
+                <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[j];
+                a[j] = a[j + <span class="hljs-number">1</span>];
+                a[j + <span class="hljs-number">1</span>] = tmp;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
 
 <p><strong>从后往前冒泡：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubbleSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; a.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> a.length - <span class="number">1</span>; j &gt; i; --j) &#123;  <span class="comment">// j 的范围：(i, len - 1]</span></span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[j];</span><br><span class="line">                a[j] = a[j - <span class="number">1</span>];</span><br><span class="line">                a[j - <span class="number">1</span>] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubbleSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length - <span class="hljs-number">1</span>; ++i) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> a.length - <span class="hljs-number">1</span>; j &gt; i; --j) &#123;  <span class="hljs-comment">// j 的范围：(i, len - 1]</span>
+            <span class="hljs-keyword">if</span> (a[j] &lt; a[j - <span class="hljs-number">1</span>]) &#123;
+                <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[j];
+                a[j] = a[j - <span class="hljs-number">1</span>];
+                a[j - <span class="hljs-number">1</span>] = tmp;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
 
 <p><strong>优化：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubbleSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; a.length - <span class="number">1</span>; ++i) &#123;  <span class="comment">// n -1 趟冒泡</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;  <span class="comment">// 记录一趟冒泡是有否有数据进行交换</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; a.length - i; ++j) &#123;  <span class="comment">// 一趟冒泡的比较次数</span></span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[j - <span class="number">1</span>]) &#123;  <span class="comment">// 是否交换</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[j];</span><br><span class="line">                a[j] = a[j - <span class="number">1</span>];</span><br><span class="line">                a[j - <span class="number">1</span>] = tmp;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!flag) <span class="keyword">break</span>;  <span class="comment">// 无数据交换，说明数据已排序完成！</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubbleSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length - <span class="hljs-number">1</span>; ++i) &#123;  <span class="hljs-comment">// n -1 趟冒泡</span>
+        <span class="hljs-type">boolean</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;  <span class="hljs-comment">// 记录一趟冒泡是有否有数据进行交换</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt; a.length - i; ++j) &#123;  <span class="hljs-comment">// 一趟冒泡的比较次数</span>
+            <span class="hljs-keyword">if</span> (a[j] &lt; a[j - <span class="hljs-number">1</span>]) &#123;  <span class="hljs-comment">// 是否交换</span>
+                <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[j];
+                a[j] = a[j - <span class="hljs-number">1</span>];
+                a[j - <span class="hljs-number">1</span>] = tmp;
+                flag = <span class="hljs-literal">true</span>;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">if</span> (!flag) <span class="hljs-keyword">break</span>;  <span class="hljs-comment">// 无数据交换，说明数据已排序完成！</span>
+    &#125;
+&#125;</code></pre>
 
 <p><strong>继续优化：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubbleSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sortBorder</span> <span class="operator">=</span> a.length - <span class="number">1</span>;  <span class="comment">// 无序数据的边界，每次只需比较到这里即可退出</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">lastExchange</span> <span class="operator">=</span> <span class="number">0</span>;  <span class="comment">// 记录最后一次交换的位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; a.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= sortBorder; ++j) &#123;  <span class="comment">// j 的范围：[1, sortBorder]</span></span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[j - <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[j];</span><br><span class="line">                a[j] = a[j - <span class="number">1</span>];</span><br><span class="line">                a[j - <span class="number">1</span>] = tmp;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                lastExchange = j; <span class="comment">// 更新最后一次交换的位置</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sortBorder = lastExchange;</span><br><span class="line">        <span class="keyword">if</span> (!flag) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubbleSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">sortBorder</span> <span class="hljs-operator">=</span> a.length - <span class="hljs-number">1</span>;  <span class="hljs-comment">// 无序数据的边界，每次只需比较到这里即可退出</span>
+    <span class="hljs-type">int</span> <span class="hljs-variable">lastExchange</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;  <span class="hljs-comment">// 记录最后一次交换的位置</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length - <span class="hljs-number">1</span>; ++i) &#123;
+        <span class="hljs-type">boolean</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt;= sortBorder; ++j) &#123;  <span class="hljs-comment">// j 的范围：[1, sortBorder]</span>
+            <span class="hljs-keyword">if</span> (a[j] &lt; a[j - <span class="hljs-number">1</span>]) &#123;
+                <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[j];
+                a[j] = a[j - <span class="hljs-number">1</span>];
+                a[j - <span class="hljs-number">1</span>] = tmp;
+                flag = <span class="hljs-literal">true</span>;
+                lastExchange = j; <span class="hljs-comment">// 更新最后一次交换的位置</span>
+            &#125;
+        &#125;
+        sortBorder = lastExchange;
+        <span class="hljs-keyword">if</span> (!flag) <span class="hljs-keyword">break</span>;
+    &#125;
+&#125;</code></pre>
 
 <p><strong>另一种形式：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubbleSort</span><span class="params">(<span class="type">int</span>[] a)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">sortBorder</span> <span class="operator">=</span> a.length - <span class="number">1</span>;  <span class="comment">// 无序数据的边界，每次只需比较到这里即可退出</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">lastExchange</span> <span class="operator">=</span> <span class="number">0</span>;  <span class="comment">// 记录最后一次交换的位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; a.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; sortBorder; ++j) &#123;  <span class="comment">// j 的范围：[0, sortBorder)</span></span><br><span class="line">            <span class="keyword">if</span> (a[j] &gt; a[j + <span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[j];</span><br><span class="line">                a[j] = a[j + <span class="number">1</span>];</span><br><span class="line">                a[j + <span class="number">1</span>] = tmp;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                lastExchange = j; <span class="comment">// 更新最后一次交换的位置</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        sortBorder = lastExchange;</span><br><span class="line">        <span class="keyword">if</span> (!flag) <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubbleSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span> &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">sortBorder</span> <span class="hljs-operator">=</span> a.length - <span class="hljs-number">1</span>;  <span class="hljs-comment">// 无序数据的边界，每次只需比较到这里即可退出</span>
+    <span class="hljs-type">int</span> <span class="hljs-variable">lastExchange</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;  <span class="hljs-comment">// 记录最后一次交换的位置</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; a.length - <span class="hljs-number">1</span>; ++i) &#123;
+        <span class="hljs-type">boolean</span> <span class="hljs-variable">flag</span> <span class="hljs-operator">=</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; sortBorder; ++j) &#123;  <span class="hljs-comment">// j 的范围：[0, sortBorder)</span>
+            <span class="hljs-keyword">if</span> (a[j] &gt; a[j + <span class="hljs-number">1</span>]) &#123;
+                <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[j];
+                a[j] = a[j + <span class="hljs-number">1</span>];
+                a[j + <span class="hljs-number">1</span>] = tmp;
+                flag = <span class="hljs-literal">true</span>;
+                lastExchange = j; <span class="hljs-comment">// 更新最后一次交换的位置</span>
+            &#125;
+        &#125;
+        sortBorder = lastExchange;
+        <span class="hljs-keyword">if</span> (!flag) <span class="hljs-keyword">break</span>;
+    &#125;
+&#125;</code></pre>
 
 <p><strong>向下冒泡</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">bubbleSort</span><span class="params">(<span class="type">int</span>[] arr)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; arr.length; ++j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[i] &gt; arr[j]) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> arr[i];</span><br><span class="line">                arr[i] = arr[j];</span><br><span class="line">                arr[j] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubbleSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] arr)</span> &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; arr.length - <span class="hljs-number">1</span>; ++i) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i + <span class="hljs-number">1</span>; j &lt; arr.length; ++j) &#123;
+            <span class="hljs-keyword">if</span> (arr[i] &gt; arr[j]) &#123;
+                <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> arr[i];
+                arr[i] = arr[j];
+                arr[j] = tmp;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
 
-<h2 id="高级排序-O-nlogn"><a href="#高级排序-O-nlogn" class="headerlink" title="高级排序 - O(nlogn)"></a>高级排序 - O(nlogn)</h2><h3 id="1、快速排序"><a href="#1、快速排序" class="headerlink" title="1、快速排序"></a>1、快速排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (r &lt;= l) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> partition(a, l, r);</span><br><span class="line">    quickSort(a, l, p - <span class="number">1</span>);</span><br><span class="line">    quickSort(a, p + <span class="number">1</span>, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    swap(a, <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(r - l + <span class="number">1</span>) + l, r);</span><br><span class="line">    <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> r, n = l;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l; i &lt; r; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; a[p]) swap(a, i, n++);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(a, p, n);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="高级排序-O-nlogn"><a href="#高级排序-O-nlogn" class="headerlink" title="高级排序 - O(nlogn)"></a>高级排序 - O(nlogn)</h2><h3 id="1、快速排序"><a href="#1、快速排序" class="headerlink" title="1、快速排序"></a>1、快速排序</h3><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">quickSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    <span class="hljs-keyword">if</span> (r &lt;= l) <span class="hljs-keyword">return</span>;
+    <span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> partition(a, l, r);
+    quickSort(a, l, p - <span class="hljs-number">1</span>);
+    quickSort(a, p + <span class="hljs-number">1</span>, r);
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">partition</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    swap(a, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>().nextInt(r - l + <span class="hljs-number">1</span>) + l, r);
+    <span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> r, n = l;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> l; i &lt; r; ++i) &#123;
+        <span class="hljs-keyword">if</span> (a[i] &lt; a[p]) swap(a, i, n++);
+    &#125;
+    swap(a, p, n);
+    <span class="hljs-keyword">return</span> n;
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[i];
+    a[i] = a[j];
+    a[j] = tmp;
+&#125;</code></pre>
 
 <p><strong>优化一：单边递归</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> partition(a, l, r);</span><br><span class="line">    	quickSort(a, p + <span class="number">1</span>, r);</span><br><span class="line">        r = p - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    swap(a, <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(r - l + <span class="number">1</span>) + l, r);</span><br><span class="line">    <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> r, n = l;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l; i &lt; r; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; a[p]) swap(a, i, n++);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(a, p, n);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">quickSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    <span class="hljs-keyword">while</span> (l &lt; r) &#123;
+        <span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> partition(a, l, r);
+    	quickSort(a, p + <span class="hljs-number">1</span>, r);
+        r = p - <span class="hljs-number">1</span>;
+    &#125;
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">partition</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    swap(a, <span class="hljs-keyword">new</span> <span class="hljs-title class_">Random</span>().nextInt(r - l + <span class="hljs-number">1</span>) + l, r);
+    <span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> r, n = l;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> l; i &lt; r; ++i) &#123;
+        <span class="hljs-keyword">if</span> (a[i] &lt; a[p]) swap(a, i, n++);
+    &#125;
+    swap(a, p, n);
+    <span class="hljs-keyword">return</span> n;
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[i];
+    a[i] = a[j];
+    a[j] = tmp;
+&#125;</code></pre>
 
 <p><strong>优化二：三点取中</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">quickSort</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> partition(a, l, r);</span><br><span class="line">    	quickSort(a, p + <span class="number">1</span>, r);</span><br><span class="line">        r = p - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    median(a, l, r);</span><br><span class="line">    <span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> r, n = l;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l; i &lt; r; ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; a[p]) swap(a, i, n++);</span><br><span class="line">    &#125;</span><br><span class="line">    swap(a, p, n);</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">median</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (a[l] &gt; a[r]) swap(a, l, r);</span><br><span class="line">    <span class="keyword">if</span> (a[l] &gt; a[m]) swap(a, l, m);</span><br><span class="line">    <span class="keyword">if</span> (a[r] &gt; a[m]) swap(a, r, m);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> a[i];</span><br><span class="line">    a[i] = a[j];</span><br><span class="line">    a[j] = tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">quickSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    <span class="hljs-keyword">while</span> (l &lt; r) &#123;
+        <span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> partition(a, l, r);
+    	quickSort(a, p + <span class="hljs-number">1</span>, r);
+        r = p - <span class="hljs-number">1</span>;
+    &#125;
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">partition</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    median(a, l, r);
+    <span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> r, n = l;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> l; i &lt; r; ++i) &#123;
+        <span class="hljs-keyword">if</span> (a[i] &lt; a[p]) swap(a, i, n++);
+    &#125;
+    swap(a, p, n);
+    <span class="hljs-keyword">return</span> n;
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">median</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> l + ((r - l) &gt;&gt; <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">if</span> (a[l] &gt; a[r]) swap(a, l, r);
+    <span class="hljs-keyword">if</span> (a[l] &gt; a[m]) swap(a, l, m);
+    <span class="hljs-keyword">if</span> (a[r] &gt; a[m]) swap(a, r, m);
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">swap</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> &#123;
+    <span class="hljs-type">int</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> a[i];
+    a[i] = a[j];
+    a[j] = tmp;
+&#125;</code></pre>
 
 <h3 id="2、归并排序"><a href="#2、归并排序" class="headerlink" title="2、归并排序"></a>2、归并排序</h3><p><strong>二路归并：</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">mergeSort</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (r &lt;= l) <span class="keyword">return</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">m</span> <span class="operator">=</span> l + ((r - l) &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    mergeSort(a, l, m);</span><br><span class="line">    mergeSort(a, m + <span class="number">1</span>, r);</span><br><span class="line">    merge(a, l, m, r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">merge</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> l, <span class="type">int</span> m, <span class="type">int</span> r)</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] tmp = <span class="keyword">new</span> <span class="title class_">int</span>[r - l + <span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> l, j = m + <span class="number">1</span>, k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= m || j &lt;= r)</span><br><span class="line">        tmp[k++] = j &gt; r || (i &lt;= m &amp;&amp; a[i] &lt; a[j]) ? a[i++] : a[j++];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">0</span>; p &lt; tmp.length; ++p)</span><br><span class="line">        a[l + p] = tmp[p]; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">mergeSort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> &#123;
+    <span class="hljs-keyword">if</span> (r &lt;= l) <span class="hljs-keyword">return</span>;
+    <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> l + ((r - l) &gt;&gt; <span class="hljs-number">1</span>);
+    mergeSort(a, l, m);
+    mergeSort(a, m + <span class="hljs-number">1</span>, r);
+    merge(a, l, m, r);
+&#125;
+
+<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">merge</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> r)</span> &#123;
+    <span class="hljs-type">int</span>[] tmp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[r - l + <span class="hljs-number">1</span>];
+    <span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> l, j = m + <span class="hljs-number">1</span>, k = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span> (i &lt;= m || j &lt;= r)
+        tmp[k++] = j &gt; r || (i &lt;= m &amp;&amp; a[i] &lt; a[j]) ? a[i++] : a[j++];
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; p &lt; tmp.length; ++p)
+        a[l + p] = tmp[p]; 
+&#125;</code></pre>
 
 <h2 id="特殊排序-O-n"><a href="#特殊排序-O-n" class="headerlink" title="特殊排序 - O(n)"></a>特殊排序 - O(n)</h2><h3 id="1、计数排序"><a href="#1、计数排序" class="headerlink" title="1、计数排序"></a>1、计数排序</h3><h3 id="2、基数排序"><a href="#2、基数排序" class="headerlink" title="2、基数排序"></a>2、基数排序</h3><h3 id="3、桶排序"><a href="#3、桶排序" class="headerlink" title="3、桶排序"></a>3、桶排序</h3><h2 id="脑洞排序"><a href="#脑洞排序" class="headerlink" title="脑洞排序"></a>脑洞排序</h2><h3 id="1、睡眠排序"><a href="#1、睡眠排序" class="headerlink" title="1、睡眠排序"></a>1、睡眠排序</h3><h3 id="2、猴子排序"><a href="#2、猴子排序" class="headerlink" title="2、猴子排序"></a>2、猴子排序</h3><h3 id="3、珠排序"><a href="#3、珠排序" class="headerlink" title="3、珠排序"></a>3、珠排序</h3><h3 id="4、面条排序"><a href="#4、面条排序" class="headerlink" title="4、面条排序"></a>4、面条排序</h3><h2 id="Arrays-sort-源码分析"><a href="#Arrays-sort-源码分析" class="headerlink" title="Arrays.sort 源码分析"></a>Arrays.sort 源码分析</h2><blockquote>
 <p>Dual-Pivot Quicksort  双轴快速排序</p>
@@ -333,7 +640,75 @@
 <p><img src="https://image.luziyangde.cn//img/image-20210402201528721.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210402201528721.png" srcset="img/loadingImage.png" alt="image-20210402201528721"></p>
 <p><img src="https://image.luziyangde.cn//img/Arrays.sort.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/Arrays.sort.png" srcset="img/loadingImage.png" alt="Arrays.sort"></p>
 <p><img src="https://image.luziyangde.cn//img/image-20210402192449295.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210402192449295.png" srcset="img/loadingImage.png" alt="image-20210402192449295"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> java.util;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * This class implements the Dual-Pivot Quicksort algorithm by</span></span><br><span class="line"><span class="comment"> * Vladimir Yaroslavskiy, Jon Bentley, and Josh Bloch. The algorithm</span></span><br><span class="line"><span class="comment"> * offers O(n log(n)) performance on many data sets that cause other</span></span><br><span class="line"><span class="comment"> * quicksorts to degrade to quadratic performance, and is typically</span></span><br><span class="line"><span class="comment"> * faster than traditional (one-pivot) Quicksort implementations.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * All exposed methods are package-private, designed to be invoked</span></span><br><span class="line"><span class="comment"> * from public methods (in class Arrays) after performing any</span></span><br><span class="line"><span class="comment"> * necessary array bounds checks and expanding parameters into the</span></span><br><span class="line"><span class="comment"> * required forms.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Vladimir Yaroslavskiy</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Jon Bentley</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Josh Bloch</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span> 2011.02.11 m765.827.12i:5\7pm</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.7</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">class</span> <span class="title class_">DualPivotQuicksort</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Prevents instantiation.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">DualPivotQuicksort</span><span class="params">()</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * Tuning parameters.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The maximum number of runs in merge sort.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">MAX_RUN_COUNT</span> <span class="operator">=</span> <span class="number">67</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The maximum length of run in merge sort.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">MAX_RUN_LENGTH</span> <span class="operator">=</span> <span class="number">33</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * If the length of an array to be sorted is less than this</span></span><br><span class="line"><span class="comment">     * constant, Quicksort is used in preference to merge sort.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">QUICKSORT_THRESHOLD</span> <span class="operator">=</span> <span class="number">286</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * If the length of an array to be sorted is less than this</span></span><br><span class="line"><span class="comment">     * constant, insertion sort is used in preference to Quicksort.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">INSERTION_SORT_THRESHOLD</span> <span class="operator">=</span> <span class="number">47</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * If the length of a byte array to be sorted is greater than this</span></span><br><span class="line"><span class="comment">     * constant, counting sort is used in preference to insertion sort.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">COUNTING_SORT_THRESHOLD_FOR_BYTE</span> <span class="operator">=</span> <span class="number">29</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * If the length of a short or char array to be sorted is greater</span></span><br><span class="line"><span class="comment">     * than this constant, counting sort is used in preference to Quicksort.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">COUNTING_SORT_THRESHOLD_FOR_SHORT_OR_CHAR</span> <span class="operator">=</span> <span class="number">3200</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs java"><span class="hljs-keyword">package</span> java.util;
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * This class implements the Dual-Pivot Quicksort algorithm by</span>
+<span class="hljs-comment"> * Vladimir Yaroslavskiy, Jon Bentley, and Josh Bloch. The algorithm</span>
+<span class="hljs-comment"> * offers O(n log(n)) performance on many data sets that cause other</span>
+<span class="hljs-comment"> * quicksorts to degrade to quadratic performance, and is typically</span>
+<span class="hljs-comment"> * faster than traditional (one-pivot) Quicksort implementations.</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * All exposed methods are package-private, designed to be invoked</span>
+<span class="hljs-comment"> * from public methods (in class Arrays) after performing any</span>
+<span class="hljs-comment"> * necessary array bounds checks and expanding parameters into the</span>
+<span class="hljs-comment"> * required forms.</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Vladimir Yaroslavskiy</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Jon Bentley</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@author</span> Josh Bloch</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@version</span> 2011.02.11 m765.827.12i:5\7pm</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@since</span> 1.7</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">final</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DualPivotQuicksort</span> &#123;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * Prevents instantiation.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-title function_">DualPivotQuicksort</span><span class="hljs-params">()</span> &#123;&#125;
+
+    <span class="hljs-comment">/*</span>
+<span class="hljs-comment">     * Tuning parameters.</span>
+<span class="hljs-comment">     */</span>
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * The maximum number of runs in merge sort.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">MAX_RUN_COUNT</span> <span class="hljs-operator">=</span> <span class="hljs-number">67</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * The maximum length of run in merge sort.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">MAX_RUN_LENGTH</span> <span class="hljs-operator">=</span> <span class="hljs-number">33</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * If the length of an array to be sorted is less than this</span>
+<span class="hljs-comment">     * constant, Quicksort is used in preference to merge sort.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">QUICKSORT_THRESHOLD</span> <span class="hljs-operator">=</span> <span class="hljs-number">286</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * If the length of an array to be sorted is less than this</span>
+<span class="hljs-comment">     * constant, insertion sort is used in preference to Quicksort.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">INSERTION_SORT_THRESHOLD</span> <span class="hljs-operator">=</span> <span class="hljs-number">47</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * If the length of a byte array to be sorted is greater than this</span>
+<span class="hljs-comment">     * constant, counting sort is used in preference to insertion sort.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">COUNTING_SORT_THRESHOLD_FOR_BYTE</span> <span class="hljs-operator">=</span> <span class="hljs-number">29</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * If the length of a short or char array to be sorted is greater</span>
+<span class="hljs-comment">     * than this constant, counting sort is used in preference to Quicksort.</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">COUNTING_SORT_THRESHOLD_FOR_SHORT_OR_CHAR</span> <span class="hljs-operator">=</span> <span class="hljs-number">3200</span>;
+    
+    <span class="hljs-comment">// ...</span>
+    
+&#125;</code></pre>
 
 <p><strong>参考链接</strong></p>
 <ul>

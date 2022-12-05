@@ -43,12 +43,12 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="1、Docker的基本组成Docker的架构图：   镜像（image）： Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很多容器。 就好似 Java 中的 类和对象，类就是镜像，容器就是对象！  容器（container）： Docker 利用容器（Container）独立运行的一个或一组应用。容器是用镜像创建的运行实例。它可以被启动、">
+    <meta name="description" content="1、Docker的基本组成Docker的架构图：   镜像（image）： Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很 多容器。 就好似 Java 中的 类和对象，类就是镜像，容器就是对象！  容器（container）： Docker 利用容器（Container）独立运行的一个或一组应用。容器是用镜像创建的运行实例。  它可以被">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小鲸鱼历险记（二）【Docker安装】">
 <meta property="og:url" content="https://luziyangde.cn/2021/03/02/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89%E3%80%90Docker%E5%AE%89%E8%A3%85%E3%80%91/index.html">
 <meta property="og:site_name" content="ZYang&#39;s Blog">
-<meta property="og:description" content="1、Docker的基本组成Docker的架构图：   镜像（image）： Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很多容器。 就好似 Java 中的 类和对象，类就是镜像，容器就是对象！  容器（container）： Docker 利用容器（Container）独立运行的一个或一组应用。容器是用镜像创建的运行实例。它可以被启动、">
+<meta property="og:description" content="1、Docker的基本组成Docker的架构图：   镜像（image）： Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很 多容器。 就好似 Java 中的 类和对象，类就是镜像，容器就是对象！  容器（container）： Docker 利用容器（Container）独立运行的一个或一组应用。容器是用镜像创建的运行实例。  它可以被">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://image.luziyangde.cn//img/image-20210311173012319.png">
 <meta property="og:image" content="https://image.luziyangde.cn//img/image-20210311200426151.png">
@@ -70,13 +70,13 @@
 
     
     
-        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow.css" media="none" >
+    
+        <link rel="stylesheet" id="hl-default-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-light.min.css" media="none" >
         
-            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/tomorrow-night.css" media="none">
+            <link rel="stylesheet" id="hl-dark-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-dark.min.css" media="none">
         
     
 
-    
     
 
     
@@ -209,13 +209,30 @@
 <img src="https://image.luziyangde.cn//img/image-20210311173012319.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311173012319.png" srcset="img/loadingImage.png" alt="image-20210311173012319" style="zoom: 80%;" />
 
 <p><strong>镜像（image）：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很</span><br><span class="line">多容器。 就好似 Java 中的 类和对象，类就是镜像，容器就是对象！</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs plaintext">Docker 镜像（Image）就是一个只读的模板。镜像可以用来创建 Docker 容器，一个镜像可以创建很
+多容器。 就好似 Java 中的 类和对象，类就是镜像，容器就是对象！</code></pre>
 
 <p><strong>容器（container）：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Docker 利用容器（Container）独立运行的一个或一组应用。容器是用镜像创建的运行实例。</span><br><span class="line"></span><br><span class="line">它可以被启动、开始、停止、删除。每个容器都是相互隔离的，保证安全的平台。</span><br><span class="line"></span><br><span class="line">可以把容器看做是一个简易版的 Linux 环境（包括root用户权限、进程空间、用户空间和网络空间等）</span><br><span class="line">和运行在其中的应用程序。</span><br><span class="line"></span><br><span class="line">容器的定义和镜像几乎一模一样，也是一堆层的统一视角，唯一区别在于容器的最上面那一层是可读可写</span><br><span class="line">的。</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs plaintext">Docker 利用容器（Container）独立运行的一个或一组应用。容器是用镜像创建的运行实例。
+
+它可以被启动、开始、停止、删除。每个容器都是相互隔离的，保证安全的平台。
+
+可以把容器看做是一个简易版的 Linux 环境（包括root用户权限、进程空间、用户空间和网络空间等）
+和运行在其中的应用程序。
+
+容器的定义和镜像几乎一模一样，也是一堆层的统一视角，唯一区别在于容器的最上面那一层是可读可写
+的。</code></pre>
 
 <p><strong>仓库（repository）：</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">仓库（Repository）是集中存放镜像文件的场所。</span><br><span class="line"></span><br><span class="line">仓库(Repository)和仓库注册服务器（Registry）是有区别的。仓库注册服务器上往往存放着多个仓</span><br><span class="line">库，每个仓库中又包含了多个镜像，每个镜像有不同的标签（tag）。</span><br><span class="line"></span><br><span class="line">仓库分为公开仓库（Public）和私有仓库（Private）两种形式。</span><br><span class="line"></span><br><span class="line">最大的公开仓库是 Docker Hub(https://hub.docker.com/)，存放了数量庞大的镜像供用户下载。</span><br><span class="line">国内的公开仓库包括阿里云 、网易云 等</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs plaintext">仓库（Repository）是集中存放镜像文件的场所。
+
+仓库(Repository)和仓库注册服务器（Registry）是有区别的。仓库注册服务器上往往存放着多个仓
+库，每个仓库中又包含了多个镜像，每个镜像有不同的标签（tag）。
+
+仓库分为公开仓库（Public）和私有仓库（Private）两种形式。
+
+最大的公开仓库是 Docker Hub(https://hub.docker.com/)，存放了数量庞大的镜像供用户下载。
+国内的公开仓库包括阿里云 、网易云 等</code></pre>
 
 <p><strong>小结：</strong></p>
 <p>需要正确的理解仓储&#x2F;镜像&#x2F;容器这几个概念 :</p>
@@ -230,40 +247,79 @@
 <p>Docker 运行在 CentOS 7 上，要求系统为64位、系统内核版本为 3.10 以上。</p>
 <p><strong>查看自己的内核：</strong></p>
 <p><code>uname -r</code> 命令用于打印当前系统相关信息（内核版本号、硬件架构、主机名称和操作系统类型 等）。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@ziyang ~]# uname -r</span><br><span class="line">3.10.0-514.26.2.el7.x86_64</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">[root@ziyang ~]# uname -r
+3.10.0-514.26.2.el7.x86_64</code></pre>
 
 <p><strong>查看版本信息：</strong></p>
 <p><code>cat /etc/os-release</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[root@ziyang ~]# cat /etc/os-release</span><br><span class="line">NAME=&quot;CentOS Linux&quot;</span><br><span class="line">VERSION=&quot;7 (Core)&quot;</span><br><span class="line">ID=&quot;centos&quot;</span><br><span class="line">ID_LIKE=&quot;rhel fedora&quot;</span><br><span class="line">VERSION_ID=&quot;7&quot;</span><br><span class="line">PRETTY_NAME=&quot;CentOS Linux 7 (Core)&quot;</span><br><span class="line">ANSI_COLOR=&quot;0;31&quot;</span><br><span class="line">CPE_NAME=&quot;cpe:/o:centos:centos:7&quot;</span><br><span class="line">HOME_URL=&quot;https://www.centos.org/&quot;</span><br><span class="line">BUG_REPORT_URL=&quot;https://bugs.centos.org/&quot;</span><br><span class="line"></span><br><span class="line">CENTOS_MANTISBT_PROJECT=&quot;CentOS-7&quot;</span><br><span class="line">CENTOS_MANTISBT_PROJECT_VERSION=&quot;7&quot;</span><br><span class="line">REDHAT_SUPPORT_PRODUCT=&quot;centos&quot;</span><br><span class="line">REDHAT_SUPPORT_PRODUCT_VERSION=&quot;7&quot;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">[root@ziyang ~]# cat /etc/os-release
+NAME=&quot;CentOS Linux&quot;
+VERSION=&quot;7 (Core)&quot;
+ID=&quot;centos&quot;
+ID_LIKE=&quot;rhel fedora&quot;
+VERSION_ID=&quot;7&quot;
+PRETTY_NAME=&quot;CentOS Linux 7 (Core)&quot;
+ANSI_COLOR=&quot;0;31&quot;
+CPE_NAME=&quot;cpe:/o:centos:centos:7&quot;
+HOME_URL=&quot;https://www.centos.org/&quot;
+BUG_REPORT_URL=&quot;https://bugs.centos.org/&quot;
+
+CENTOS_MANTISBT_PROJECT=&quot;CentOS-7&quot;
+CENTOS_MANTISBT_PROJECT_VERSION=&quot;7&quot;
+REDHAT_SUPPORT_PRODUCT=&quot;centos&quot;
+REDHAT_SUPPORT_PRODUCT_VERSION=&quot;7&quot;</code></pre>
 
 <h3 id="3、安装步骤"><a href="#3、安装步骤" class="headerlink" title="3、安装步骤"></a>3、安装步骤</h3><p>1、官网安装参考手册：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/">https://docs.docker.com/engine/install/centos/</a></p>
 <p>2、确定你是CentOS7及以上版本，我们已经做过了</p>
 <p>3、yum安装gcc相关环境（需要确保 虚拟机可以上外网 ）</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum -y install gcc</span><br><span class="line">yum -y install gcc-c++</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">yum -y install gcc
+yum -y install gcc-c++</code></pre>
 
 <p>4、卸载旧版本</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum remove docker \</span><br><span class="line">                docker-client \</span><br><span class="line">                docker-client-latest \</span><br><span class="line">                docker-common \</span><br><span class="line">                docker-latest \</span><br><span class="line">                docker-latest-logrotate \</span><br><span class="line">                docker-logrotate \</span><br><span class="line">                docker-engine</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">yum remove docker \
+                docker-client \
+                docker-client-latest \
+                docker-common \
+                docker-latest \
+                docker-latest-logrotate \
+                docker-logrotate \
+                docker-engine</code></pre>
 
 <p>5、安装需要的软件包</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">yum install -y yum-utils</code></pre>
 
 <p>6、设置镜像仓库</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">错误</span></span><br><span class="line">yum-config-manager --add-repo</span><br><span class="line">https://download.docker.com/linux/centos/docker-ce.repo</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 报错</span></span></span><br><span class="line">[Errno 14] curl#35 - TCP connection reset by peer</span><br><span class="line">[Errno 12] curl#35 - Timeout</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">正确推荐使用国内的</span></span><br><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/dockerce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">错误</span>
+yum-config-manager --add-repo
+https://download.docker.com/linux/centos/docker-ce.repo
+<span class="hljs-meta prompt_">#</span><span class="language-bash"><span class="hljs-comment"># 报错</span></span>
+[Errno 14] curl#35 - TCP connection reset by peer
+[Errno 12] curl#35 - Timeout
+<span class="hljs-meta prompt_"># </span><span class="language-bash">正确推荐使用国内的</span>
+yum-config-manager --add-repo http://mirrors.aliyun.com/dockerce/linux/centos/docker-ce.repo</code></pre>
 
 <p>7、更新yum软件包索引</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum makecache fast</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">yum makecache fast</code></pre>
 
 <p>8、安装 Docker CE</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">yum install docker-ce docker-ce-cli containerd.io</code></pre>
 
 <p>9、启动 Docker</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">systemctl start docker</code></pre>
 
 <p>10、测试命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker version</span><br><span class="line"></span><br><span class="line">docker run hello-world</span><br><span class="line"></span><br><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">docker version
+
+docker run hello-world
+
+docker images</code></pre>
 
 <p>11、卸载</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop docker</span><br><span class="line"></span><br><span class="line">yum -y remove docker-ce docker-ce-cli containerd.io</span><br><span class="line"></span><br><span class="line">rm -rf /var/lib/docker</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">systemctl stop docker
+
+yum -y remove docker-ce docker-ce-cli containerd.io
+
+rm -rf /var/lib/docker</code></pre>
 
 <h3 id="4、阿里云镜像加速"><a href="#4、阿里云镜像加速" class="headerlink" title="4、阿里云镜像加速"></a>4、阿里云镜像加速</h3><p>1、介绍：<a target="_blank" rel="noopener" href="https://www.aliyun.com/product/acr">https://www.aliyun.com/product/acr</a></p>
 <p>2、注册一个属于自己的阿里云账户(可复用淘宝账号)</p>
@@ -272,13 +328,23 @@
 <img src="https://image.luziyangde.cn//img/image-20210311200426151.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311200426151.png" srcset="img/loadingImage.png" alt="image-20210311200426151" style="zoom:67%;" />
 
 <p>5、配置镜像加速</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line"></span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://2z7hcudf.mirror.aliyuncs.com&quot;]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">sudo mkdir -p /etc/docker
+
+sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;
+&#123;
+  &quot;registry-mirrors&quot;: [&quot;https://2z7hcudf.mirror.aliyuncs.com&quot;]
+&#125;
+EOF
+
+sudo systemctl daemon-reload
+
+sudo systemctl restart docker</code></pre>
 
 <blockquote>
 <p>测试 HelloWorld</p>
 </blockquote>
 <p>1、启动hello-world</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">docker run hello-world</code></pre>
 
 <p>2、run干了什么？</p>
 <img src="https://image.luziyangde.cn//img/image-20210311201503968.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/image-20210311201503968.png" srcset="img/loadingImage.png" alt="image-20210311201503968" style="zoom: 80%;" />

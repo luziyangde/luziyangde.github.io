@@ -43,12 +43,12 @@
 
     <!-- OpenGraph -->
  
-    <meta name="description" content="Docker 常用命令帮助命令docker version  # 显示docker的版本信息docker info     # 显示docker的系统信息，包括镜像和容器的数量docker 命令 --help  # 帮助命令  镜像命令docker images    # 查看所有本地的主机上的镜像# 可选项-a, -all       # 列出所有镜像-q, -quiet   # 只显示镜像的i">
+    <meta name="description" content="Docker 常用命令帮助命令docker version  # 显示docker的版本信息 docker info     # 显示docker的系统信息，包括镜像和容器的数量 docker 命令 --help  # 帮助命令  镜像命令docker images    # 查看所有本地的主机上的镜像 # 可选项 -a, -all       # 列出所有镜像 -q, -quiet   # 只显">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小鲸鱼历险记（三）【Docker常用命令】">
 <meta property="og:url" content="https://luziyangde.cn/2021/03/03/%E5%B0%8F%E9%B2%B8%E9%B1%BC%E5%8E%86%E9%99%A9%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89%E3%80%90Docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E3%80%91/index.html">
 <meta property="og:site_name" content="ZYang&#39;s Blog">
-<meta property="og:description" content="Docker 常用命令帮助命令docker version  # 显示docker的版本信息docker info     # 显示docker的系统信息，包括镜像和容器的数量docker 命令 --help  # 帮助命令  镜像命令docker images    # 查看所有本地的主机上的镜像# 可选项-a, -all       # 列出所有镜像-q, -quiet   # 只显示镜像的i">
+<meta property="og:description" content="Docker 常用命令帮助命令docker version  # 显示docker的版本信息 docker info     # 显示docker的系统信息，包括镜像和容器的数量 docker 命令 --help  # 帮助命令  镜像命令docker images    # 查看所有本地的主机上的镜像 # 可选项 -a, -all       # 列出所有镜像 -q, -quiet   # 只显">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://image.luziyangde.cn//img/20210307211521.png">
 <meta property="og:image" content="https://image.luziyangde.cn//img/20210308152327.png">
@@ -75,13 +75,13 @@
 
     
     
-        <link rel="stylesheet" id="hl-default-theme" href="/css/highlight/tomorrow.css" media="none" >
+    
+        <link rel="stylesheet" id="hl-default-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-light.min.css" media="none" >
         
-            <link rel="stylesheet" id="hl-dark-theme" href="/css/highlight/tomorrow-night.css" media="none">
+            <link rel="stylesheet" id="hl-dark-theme" href="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/styles/atom-one-dark.min.css" media="none">
         
     
 
-    
     
 
     
@@ -210,45 +210,188 @@
     </script>
 </div>
     <div class="post__content">
-        <h3 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h3><h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker version  # 显示docker的版本信息</span><br><span class="line">docker info     # 显示docker的系统信息，包括镜像和容器的数量</span><br><span class="line">docker 命令 --help  # 帮助命令</span><br></pre></td></tr></table></figure>
+        <h3 id="Docker-常用命令"><a href="#Docker-常用命令" class="headerlink" title="Docker 常用命令"></a>Docker 常用命令</h3><h4 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h4><pre><code class="hljs shell">docker version  # 显示docker的版本信息
+docker info     # 显示docker的系统信息，包括镜像和容器的数量
+docker 命令 --help  # 帮助命令</code></pre>
 
-<h4 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker images    # 查看所有本地的主机上的镜像</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可选项</span></span><br><span class="line">-a, -all       # 列出所有镜像</span><br><span class="line">-q, -quiet   # 只显示镜像的id</span><br><span class="line"></span><br><span class="line">docker search   # 搜索镜像</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">可选项，通过搜索来过滤</span></span><br><span class="line">docker search mysql -f stars=3000   # 搜索出来的镜像都是STARS大于3000的</span><br><span class="line"></span><br><span class="line">docker pull     # 下载镜像</span><br><span class="line">docker pull 镜像名[:tag]</span><br><span class="line">docker pull mysql:5.7</span><br><span class="line"></span><br><span class="line">docker rmi   # 删除镜像</span><br><span class="line">docker rmi -f 镜像id      # 删除指定镜像</span><br><span class="line">docker rmi -f 镜像id 镜像id 镜像id    # 删除多个镜像</span><br><span class="line">docker rmi -f $(docker images -aq)   # 删除全部镜像</span><br></pre></td></tr></table></figure>
+<h4 id="镜像命令"><a href="#镜像命令" class="headerlink" title="镜像命令"></a>镜像命令</h4><pre><code class="hljs shell">docker images    # 查看所有本地的主机上的镜像
+<span class="hljs-meta prompt_"># </span><span class="language-bash">可选项</span>
+-a, -all       # 列出所有镜像
+-q, -quiet   # 只显示镜像的id
+
+docker search   # 搜索镜像
+<span class="hljs-meta prompt_"># </span><span class="language-bash">可选项，通过搜索来过滤</span>
+docker search mysql -f stars=3000   # 搜索出来的镜像都是STARS大于3000的
+
+docker pull     # 下载镜像
+docker pull 镜像名[:tag]
+docker pull mysql:5.7
+
+docker rmi   # 删除镜像
+docker rmi -f 镜像id      # 删除指定镜像
+docker rmi -f 镜像id 镜像id 镜像id    # 删除多个镜像
+docker rmi -f $(docker images -aq)   # 删除全部镜像</code></pre>
 
 <h4 id="容器命令"><a href="#容器命令" class="headerlink" title="容器命令"></a>容器命令</h4><blockquote>
 <p>说明：有了镜像才可以创建容器！我们下载一个 CentOS 镜像来测试学习！</p>
 </blockquote>
 <p><code>docker pull centos</code></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run [可选参数] image      # 启动容器</span><br><span class="line">--name=&quot;Name&quot;   # 容器名字 </span><br><span class="line">-d      # 后台方式运行  .jar  nohup</span><br><span class="line">-it      # 使用交互方式运行，进入容器查看内容</span><br><span class="line">-p       # （小p）指定容器的端口  -p 8080:8080</span><br><span class="line">    -p ip:主机端口:容器端口</span><br><span class="line">    -p 主机端口:容器端口（常用）</span><br><span class="line">    -p 容器端口</span><br><span class="line">    容器端口</span><br><span class="line">-P   # （大P）随机指定端口</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker ps    # 列出所有当前正在运行的容器</span><br><span class="line">docker ps -a     # 列出所有当前正在运行的容器 + 历史运行过的容器</span><br><span class="line">docker ps -n=?（个数）      # 显示最近创建的容器</span><br><span class="line">docker ps -q        # 只显示容器的编号</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出容器</span></span><br><span class="line">exit     # 直接停止容器并退出</span><br><span class="line">Ctrl + P + Q      # 不停止容器退出</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除容器</span></span><br><span class="line">docker rm 容器id   # 删除指定容器【不能删除正在运行的容器】</span><br><span class="line">docker rm -f  容器id      # 强制删除指定容器</span><br><span class="line">docker rm -f $(docker ps -aq)   # 删除所有容器</span><br><span class="line">docker ps -a -q | xargs docker rm   # 删除所有容器</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动和停止容器</span></span><br><span class="line">docker start 容器id       # 启动容器</span><br><span class="line">docker restart 容器id     # 重启容器</span><br><span class="line">docker stop 容器id        # 停止当前正在运行的容器</span><br><span class="line">docker kill 容器id        # 强制停止当前容器</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">docker run [可选参数] image      # 启动容器
+--name=&quot;Name&quot;   # 容器名字 
+-d      # 后台方式运行  .jar  nohup
+-it      # 使用交互方式运行，进入容器查看内容
+-p       # （小p）指定容器的端口  -p 8080:8080
+    -p ip:主机端口:容器端口
+    -p 主机端口:容器端口（常用）
+    -p 容器端口
+    容器端口
+-P   # （大P）随机指定端口
 
-<h4 id="常用的其他命令"><a href="#常用的其他命令" class="headerlink" title="常用的其他命令"></a>常用的其他命令</h4><h5 id="后台启动容器"><a href="#后台启动容器" class="headerlink" title="后台启动容器"></a>后台启动容器</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d 镜像名       # 后台启动容器</span><br><span class="line">docker run centos</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">问题：docker ps，发现  centos 停止了</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">常见的坑：docker 容器使用后台运行，就必须有一个前台进程，docker发现没有前台应用，就会自动停止</span></span><br><span class="line">docker run centos：容器启动后，发现没有提供服务，就会立刻停止</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker logs     # 查看日志</span><br><span class="line">-tf     # 显示日志</span><br><span class="line">--tail number       # 要显示日志条数</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看容器中的进程信息 ps</span></span><br><span class="line">docker top 容器id</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看镜像的元数据</span></span><br><span class="line">docker inspect 容器id</span><br></pre></td></tr></table></figure>
 
-<h5 id="进入当前正在运行的容器"><a href="#进入当前正在运行的容器" class="headerlink" title="进入当前正在运行的容器"></a>进入当前正在运行的容器</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">我们通常容器都是使用后台方式运行的，需要进入容器，修改一些配置</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方式一</span></span><br><span class="line">docker exec -it 容器id bash/shell     # 进入容器后开启一个新的终端，可以在里面操作（常用）</span><br><span class="line">docker exec -it ccc55352efeb /bin/bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">方式二</span></span><br><span class="line">docker attach 容器id      # 进入容器正在执行的终端，不会启动新的进程</span><br><span class="line">docker attach ccc55352efeb</span><br></pre></td></tr></table></figure>
+docker ps    # 列出所有当前正在运行的容器
+docker ps -a     # 列出所有当前正在运行的容器 + 历史运行过的容器
+docker ps -n=?（个数）      # 显示最近创建的容器
+docker ps -q        # 只显示容器的编号
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">退出容器</span>
+exit     # 直接停止容器并退出
+Ctrl + P + Q      # 不停止容器退出
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">删除容器</span>
+docker rm 容器id   # 删除指定容器【不能删除正在运行的容器】
+docker rm -f  容器id      # 强制删除指定容器
+docker rm -f $(docker ps -aq)   # 删除所有容器
+docker ps -a -q | xargs docker rm   # 删除所有容器
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">启动和停止容器</span>
+docker start 容器id       # 启动容器
+docker restart 容器id     # 重启容器
+docker stop 容器id        # 停止当前正在运行的容器
+docker kill 容器id        # 强制停止当前容器</code></pre>
 
-<h5 id="从容器内拷贝文件到主机上"><a href="#从容器内拷贝文件到主机上" class="headerlink" title="从容器内拷贝文件到主机上"></a>从容器内拷贝文件到主机上</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker cp 容器id:容器内路径 目的主机路径</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">拷贝是一种手动过程，未来我们使用 -v 卷的技术，可以实现，自动同步</span></span><br></pre></td></tr></table></figure>
+<h4 id="常用的其他命令"><a href="#常用的其他命令" class="headerlink" title="常用的其他命令"></a>常用的其他命令</h4><h5 id="后台启动容器"><a href="#后台启动容器" class="headerlink" title="后台启动容器"></a>后台启动容器</h5><pre><code class="hljs shell">docker run -d 镜像名       # 后台启动容器
+docker run centos
+<span class="hljs-meta prompt_"># </span><span class="language-bash">问题：docker ps，发现  centos 停止了</span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">常见的坑：docker 容器使用后台运行，就必须有一个前台进程，docker发现没有前台应用，就会自动停止</span>
+docker run centos：容器启动后，发现没有提供服务，就会立刻停止
+
+
+docker logs     # 查看日志
+-tf     # 显示日志
+--tail number       # 要显示日志条数
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">查看容器中的进程信息 ps</span>
+docker top 容器id
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">查看镜像的元数据</span>
+docker inspect 容器id</code></pre>
+
+<h5 id="进入当前正在运行的容器"><a href="#进入当前正在运行的容器" class="headerlink" title="进入当前正在运行的容器"></a>进入当前正在运行的容器</h5><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">我们通常容器都是使用后台方式运行的，需要进入容器，修改一些配置</span>
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">方式一</span>
+docker exec -it 容器id bash/shell     # 进入容器后开启一个新的终端，可以在里面操作（常用）
+docker exec -it ccc55352efeb /bin/bash
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">方式二</span>
+docker attach 容器id      # 进入容器正在执行的终端，不会启动新的进程
+docker attach ccc55352efeb</code></pre>
+
+<h5 id="从容器内拷贝文件到主机上"><a href="#从容器内拷贝文件到主机上" class="headerlink" title="从容器内拷贝文件到主机上"></a>从容器内拷贝文件到主机上</h5><pre><code class="hljs shell">docker cp 容器id:容器内路径 目的主机路径
+<span class="hljs-meta prompt_"></span>
+<span class="hljs-meta prompt_"># </span><span class="language-bash">拷贝是一种手动过程，未来我们使用 -v 卷的技术，可以实现，自动同步</span></code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210307211521.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210307211521.png" srcset="img/loadingImage.png"></p>
-<h4 id="命令小结"><a href="#命令小结" class="headerlink" title="命令小结"></a>命令小结</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">attach       Attach to a running container    <span class="comment"># 当前 shell 下</span></span><br><span class="line">attach       连接指定运行镜像 </span><br><span class="line">build        Build an image <span class="keyword">from</span> a Dockerfile      <span class="comment"># 通过 Dockerfile 定 制镜像 </span></span><br><span class="line">commit     Create a new image <span class="keyword">from</span> a container changes       <span class="comment"># 提交当前容器为新的镜像 </span></span><br><span class="line">cp           Copy files/folders <span class="keyword">from</span> the containers filesystem to the host path <span class="comment">#从容器中拷贝指定文件或者目录到宿主机中 </span></span><br><span class="line">create      Create a new container    <span class="comment"># 创建一个新的容器，同 run，但不启动容器 </span></span><br><span class="line">diff          Inspect changes on a containers filesystem     <span class="comment"># 查看 docker 容器变化 </span></span><br><span class="line">events      Get real time events <span class="keyword">from</span> the server     <span class="comment"># 从 docker 服务获取容 器实时事件 </span></span><br><span class="line"><span class="built_in">exec</span>        Run a command <span class="keyword">in</span> an existing container   <span class="comment"># 在已存在的容器上运行命令 </span></span><br><span class="line">export      Stream the contents of a container <span class="keyword">as</span> a tar archive    <span class="comment"># 导出容器的内 容流作为一个 tar 归档文件[对应 import ] </span></span><br><span class="line">history     Show the history of an image    <span class="comment"># 展示一个镜像形成历史</span></span><br><span class="line">images      <span class="type">List</span> images   <span class="comment"># 列出系统当前镜像</span></span><br><span class="line"><span class="keyword">import</span>      Create a new filesystem image <span class="keyword">from</span> the contents of a tarball     <span class="comment"># 从 tar包中的内容创建一个新的文件系统映像[对应export] </span></span><br><span class="line">info         Display system-wide information        <span class="comment"># 显示系统相关信息 </span></span><br><span class="line">inspect     Return low-level information on a container     <span class="comment"># 查看容器详细信息 </span></span><br><span class="line">kill          Kill a running container    <span class="comment"># kill 指定 docker 容 器 </span></span><br><span class="line">load        Load an image <span class="keyword">from</span> a tar archive       <span class="comment"># 从一个 tar 包中加载一 个镜像[对应 save] </span></span><br><span class="line">login        Register <span class="keyword">or</span> Login to the docker registry server <span class="comment"># 注册或者登陆一个 docker 源服务器</span></span><br><span class="line">logout      Log out <span class="keyword">from</span> a Docker registry server        <span class="comment"># 从当前 Docker registry 退出 </span></span><br><span class="line">logs         Fetch the logs of a container       <span class="comment"># 输出当前容器日志信息 </span></span><br><span class="line">port         Lookup the public-facing port which <span class="keyword">is</span> NAT-ed to PRIVATE_PORT      <span class="comment"># 查看映射端口对应的容器内部源端口 </span></span><br><span class="line">pause       Pause <span class="built_in">all</span> processes within a container        <span class="comment"># 暂停容器 </span></span><br><span class="line">ps            <span class="type">List</span> containers      <span class="comment"># 列出容器列表 </span></span><br><span class="line">pull           Pull an image <span class="keyword">or</span> a repository <span class="keyword">from</span> the docker registry server      <span class="comment"># 从docker镜像源服务器拉取指定镜像或者库镜像 </span></span><br><span class="line">push         Push an image <span class="keyword">or</span> a repository to the docker registry server        <span class="comment"># 推送指定镜像或者库镜像至docker源服务器 </span></span><br><span class="line">restart       Restart a running container         <span class="comment"># 重启运行的容器 </span></span><br><span class="line">rm            Remove one <span class="keyword">or</span> more containers        <span class="comment"># 移除一个或者多个容器 </span></span><br><span class="line">rmi           Remove one <span class="keyword">or</span> more images       <span class="comment"># 移除一个或多个镜像[无容器使用该镜像才可删除，否则需删除相关容器才可继续或 -f 强制删除] </span></span><br><span class="line">run           Run a command <span class="keyword">in</span> a new container    <span class="comment"># 创建一个新的容器并运行 一个命令 </span></span><br><span class="line">save Save an image to a tar archive <span class="comment"># 保存一个镜像为一个 tar 包[对应 load] </span></span><br><span class="line">search       Search <span class="keyword">for</span> an image on the Docker Hub        <span class="comment"># 在 docker hub 中搜索镜像 </span></span><br><span class="line">start         Start a stopped containers        <span class="comment"># 启动容器 </span></span><br><span class="line">stop         Stop a running containers      <span class="comment"># 停止容器 </span></span><br><span class="line">tag          Tag an image into a repository      <span class="comment"># 给源中镜像打标签 </span></span><br><span class="line">top          Lookup the running processes of a container         <span class="comment"># 查看容器中运行的进程信息 </span></span><br><span class="line">unpause   Unpause a paused container <span class="comment"># 取消暂停容器 </span></span><br><span class="line">version     Show the docker version information         <span class="comment"># 查看 docker 版本号</span></span><br><span class="line">wait         Block until a container stops, then <span class="built_in">print</span> its exit code        <span class="comment"># 截取容器停止时的退出状态值</span></span><br></pre></td></tr></table></figure>
+<h4 id="命令小结"><a href="#命令小结" class="headerlink" title="命令小结"></a>命令小结</h4><pre><code class="hljs python">attach       Attach to a running container    <span class="hljs-comment"># 当前 shell 下</span>
+attach       连接指定运行镜像 
+build        Build an image <span class="hljs-keyword">from</span> a Dockerfile      <span class="hljs-comment"># 通过 Dockerfile 定 制镜像 </span>
+commit     Create a new image <span class="hljs-keyword">from</span> a container changes       <span class="hljs-comment"># 提交当前容器为新的镜像 </span>
+cp           Copy files/folders <span class="hljs-keyword">from</span> the containers filesystem to the host path <span class="hljs-comment">#从容器中拷贝指定文件或者目录到宿主机中 </span>
+create      Create a new container    <span class="hljs-comment"># 创建一个新的容器，同 run，但不启动容器 </span>
+diff          Inspect changes on a containers filesystem     <span class="hljs-comment"># 查看 docker 容器变化 </span>
+events      Get real time events <span class="hljs-keyword">from</span> the server     <span class="hljs-comment"># 从 docker 服务获取容 器实时事件 </span>
+<span class="hljs-built_in">exec</span>        Run a command <span class="hljs-keyword">in</span> an existing container   <span class="hljs-comment"># 在已存在的容器上运行命令 </span>
+export      Stream the contents of a container <span class="hljs-keyword">as</span> a tar archive    <span class="hljs-comment"># 导出容器的内 容流作为一个 tar 归档文件[对应 import ] </span>
+history     Show the history of an image    <span class="hljs-comment"># 展示一个镜像形成历史</span>
+images      <span class="hljs-type">List</span> images   <span class="hljs-comment"># 列出系统当前镜像</span>
+<span class="hljs-keyword">import</span>      Create a new filesystem image <span class="hljs-keyword">from</span> the contents of a tarball     <span class="hljs-comment"># 从 tar包中的内容创建一个新的文件系统映像[对应export] </span>
+info         Display system-wide information        <span class="hljs-comment"># 显示系统相关信息 </span>
+inspect     Return low-level information on a container     <span class="hljs-comment"># 查看容器详细信息 </span>
+kill          Kill a running container    <span class="hljs-comment"># kill 指定 docker 容 器 </span>
+load        Load an image <span class="hljs-keyword">from</span> a tar archive       <span class="hljs-comment"># 从一个 tar 包中加载一 个镜像[对应 save] </span>
+login        Register <span class="hljs-keyword">or</span> Login to the docker registry server <span class="hljs-comment"># 注册或者登陆一个 docker 源服务器</span>
+logout      Log out <span class="hljs-keyword">from</span> a Docker registry server        <span class="hljs-comment"># 从当前 Docker registry 退出 </span>
+logs         Fetch the logs of a container       <span class="hljs-comment"># 输出当前容器日志信息 </span>
+port         Lookup the public-facing port which <span class="hljs-keyword">is</span> NAT-ed to PRIVATE_PORT      <span class="hljs-comment"># 查看映射端口对应的容器内部源端口 </span>
+pause       Pause <span class="hljs-built_in">all</span> processes within a container        <span class="hljs-comment"># 暂停容器 </span>
+ps            <span class="hljs-type">List</span> containers      <span class="hljs-comment"># 列出容器列表 </span>
+pull           Pull an image <span class="hljs-keyword">or</span> a repository <span class="hljs-keyword">from</span> the docker registry server      <span class="hljs-comment"># 从docker镜像源服务器拉取指定镜像或者库镜像 </span>
+push         Push an image <span class="hljs-keyword">or</span> a repository to the docker registry server        <span class="hljs-comment"># 推送指定镜像或者库镜像至docker源服务器 </span>
+restart       Restart a running container         <span class="hljs-comment"># 重启运行的容器 </span>
+rm            Remove one <span class="hljs-keyword">or</span> more containers        <span class="hljs-comment"># 移除一个或者多个容器 </span>
+rmi           Remove one <span class="hljs-keyword">or</span> more images       <span class="hljs-comment"># 移除一个或多个镜像[无容器使用该镜像才可删除，否则需删除相关容器才可继续或 -f 强制删除] </span>
+run           Run a command <span class="hljs-keyword">in</span> a new container    <span class="hljs-comment"># 创建一个新的容器并运行 一个命令 </span>
+save Save an image to a tar archive <span class="hljs-comment"># 保存一个镜像为一个 tar 包[对应 load] </span>
+search       Search <span class="hljs-keyword">for</span> an image on the Docker Hub        <span class="hljs-comment"># 在 docker hub 中搜索镜像 </span>
+start         Start a stopped containers        <span class="hljs-comment"># 启动容器 </span>
+stop         Stop a running containers      <span class="hljs-comment"># 停止容器 </span>
+tag          Tag an image into a repository      <span class="hljs-comment"># 给源中镜像打标签 </span>
+top          Lookup the running processes of a container         <span class="hljs-comment"># 查看容器中运行的进程信息 </span>
+unpause   Unpause a paused container <span class="hljs-comment"># 取消暂停容器 </span>
+version     Show the docker version information         <span class="hljs-comment"># 查看 docker 版本号</span>
+wait         Block until a container stops, then <span class="hljs-built_in">print</span> its exit code        <span class="hljs-comment"># 截取容器停止时的退出状态值</span></code></pre>
 
-<h3 id="Docker-安装-Nginx"><a href="#Docker-安装-Nginx" class="headerlink" title="Docker 安装 Nginx"></a>Docker 安装 Nginx</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1、搜素镜像（建议去DockerHub上搜索，可以看到帮助文档）</span></span><br><span class="line">docker search nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2、下载镜像</span></span><br><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3、后台启动容器，宿主机端口3344，容器内部端口80</span></span><br><span class="line">docker run -d --name nginx01 -p <span class="number">3344</span>:<span class="number">80</span> nginx</span><br><span class="line">-p 宿主机端口 : 容器内部端口</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Docker-安装-Nginx"><a href="#Docker-安装-Nginx" class="headerlink" title="Docker 安装 Nginx"></a>Docker 安装 Nginx</h3><pre><code class="hljs python"><span class="hljs-comment"># 1、搜素镜像（建议去DockerHub上搜索，可以看到帮助文档）</span>
+docker search nginx
+
+<span class="hljs-comment"># 2、下载镜像</span>
+docker pull nginx
+
+<span class="hljs-comment"># 3、后台启动容器，宿主机端口3344，容器内部端口80</span>
+docker run -d --name nginx01 -p <span class="hljs-number">3344</span>:<span class="hljs-number">80</span> nginx
+-p 宿主机端口 : 容器内部端口
+</code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210308152327.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210308152327.png" srcset="img/loadingImage.png"></p>
 <p><img src="https://image.luziyangde.cn//img/20210308153215.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210308153215.png" srcset="img/loadingImage.png"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 4、本机测试</span></span><br><span class="line">[root@ziyang ~]<span class="comment"># curl localhost:3344</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># 4、本机测试</span>
+[root@ziyang ~]<span class="hljs-comment"># curl localhost:3344</span></code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210308152531.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210308152531.png" srcset="img/loadingImage.png"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 5、公网测试</span></span><br><span class="line">http://www.luziyangde.cn:<span class="number">3344</span>/</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># 5、公网测试</span>
+http://www.luziyangde.cn:<span class="hljs-number">3344</span>/</code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210308152727.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210308152727.png" srcset="img/loadingImage.png"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 6、进入容器</span></span><br><span class="line">[root@ziyang ~]<span class="comment"># docker exec -it nginx01 /bin/bash</span></span><br><span class="line"></span><br><span class="line">curl localhost:<span class="number">80</span>  <span class="comment"># 可以访问</span></span><br><span class="line"></span><br><span class="line">curl localhost:<span class="number">3344</span>  <span class="comment"># 无法访问</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># 6、进入容器</span>
+[root@ziyang ~]<span class="hljs-comment"># docker exec -it nginx01 /bin/bash</span>
+
+curl localhost:<span class="hljs-number">80</span>  <span class="hljs-comment"># 可以访问</span>
+
+curl localhost:<span class="hljs-number">3344</span>  <span class="hljs-comment"># 无法访问</span>
+</code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210308153745.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210308153745.png" srcset="img/loadingImage.png"></p>
 <blockquote>
 <p>思考问题：我们每次改动 nginx 配置文件，都需要进入容器内部？十分麻烦，要是可以在容器外部提供一个映射路径，达到在容器修改文件，容器内部就可以自动修改？ -v 数据卷技术</p>
 </blockquote>
-<h3 id="Docker-安装-Tomact"><a href="#Docker-安装-Tomact" class="headerlink" title="Docker 安装 Tomact"></a>Docker 安装 Tomact</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 官方的使用</span></span><br><span class="line">docker run -it --rm tomcat:<span class="number">9.0</span></span><br><span class="line"><span class="comment"># 我们之前的启动都是后台，停止了容器之后，容器还是可以查到的</span></span><br><span class="line"><span class="comment"># --rm  一般用来测试，用完就删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载再启动</span></span><br><span class="line">docker pull tomcat:<span class="number">9.0</span></span><br><span class="line"></span><br><span class="line">docker run -d --name tomcat01 -p <span class="number">8080</span>:<span class="number">8080</span> tomcat:<span class="number">9.0</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Docker-安装-Tomact"><a href="#Docker-安装-Tomact" class="headerlink" title="Docker 安装 Tomact"></a>Docker 安装 Tomact</h3><pre><code class="hljs python"><span class="hljs-comment"># 官方的使用</span>
+docker run -it --rm tomcat:<span class="hljs-number">9.0</span>
+<span class="hljs-comment"># 我们之前的启动都是后台，停止了容器之后，容器还是可以查到的</span>
+<span class="hljs-comment"># --rm  一般用来测试，用完就删除</span>
+
+<span class="hljs-comment"># 下载再启动</span>
+docker pull tomcat:<span class="hljs-number">9.0</span>
+
+docker run -d --name tomcat01 -p <span class="hljs-number">8080</span>:<span class="hljs-number">8080</span> tomcat:<span class="hljs-number">9.0</span>
+</code></pre>
 
 <p><img src="https://image.luziyangde.cn//img/20210308161200.png" class="lazy" data-srcset="https://image.luziyangde.cn//img/20210308161200.png" srcset="img/loadingImage.png"></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入容器</span></span><br><span class="line">docker <span class="built_in">exec</span> -it tomcat01 /<span class="built_in">bin</span>/bash</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python"><span class="hljs-comment"># 进入容器</span>
+docker <span class="hljs-built_in">exec</span> -it tomcat01 /<span class="hljs-built_in">bin</span>/bash</code></pre>
 
 <p>发现Linux命令少了，并且webapps里面没有文件！</p>
 <p>原因：阿里云镜像的原因，默认是最小的镜像，所有不必要的都剔除了！保证最小可运行的环境！</p>
